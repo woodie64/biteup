@@ -59,7 +59,7 @@ class NoticeForm(FlaskForm):
 
 
 class EditProfileForm(FlaskForm):
-    name = StringField('이름', validators=[Length(0, 64)])
+    username = StringField('이름', validators=[Length(0, 64)])
     location = StringField('사는 곳', validators=[Length(0, 64)])
     about_me = TextAreaField('나는 ')
     submit = SubmitField('저장')

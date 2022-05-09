@@ -56,6 +56,7 @@
   .col-11 {flex: 0 0 100%;max-width: 100%;}
 
 
+  .profile-group h3{color: #000;}
 
   .div-trade{width: 1280px;margin: 0 auto;box-sizing: border-box;padding: 20px 0px 60px 0px;position: relative;display:flex;}
   .div-trade .container-warp.main{margin: 0 auto;}
