@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<title>커뮤니티 글쓰기</title>
+<div id="container my-3">
+    <div id="contents" class="div-board">
+        <div class="container-warp list">
+            <h5 class="my-3 border-bottom pb-2">자유게시판 등록</h5>
+            <form method="post" class="post-form my-3">
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    <label for="subject">제목</label>
+                    <input type="text" class="form-control" name="subject" id="subject" required
+                           value="{{ form.subject.data or '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="content">내용</label>
+                    <textarea class="form-control" name="content"
+                              id="content" rows="10" required>{{ form.content.data or '' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="upload">파일</label>
+                    <input type="file" class="form-control" name="file" id="upload">
+                </div>
+                <button type="submit" class="btn btn-primary">작성완료</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:dark="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>biteup - 코인 커뮤니티</title>
+    <link rel="icon" type="image/x-icon"
+          href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<!-- 네비게이션바 -->
+{% include "navbar.html" %}
+<!--증시현황-->
+{% include "float.html" %}
+<div class="container my-3">
+    <div id="contents" class="div-trade">
+        <div class="container-warp main">
+            {% block content %}
+            {% endblock %}
+            <div class="trade-top left">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript"
+                            src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "title": "가상화폐",
+  "title_raw": "Cryptocurrencies",
+  "tabs": [
+    {
+      "title": "오버뷰",
+      "title_raw": "Overview",
+      "symbols": [
+        {
+          "s": "CRYPTOCAP:TOTAL"
+        },
+        {
+          "s": "BITSTAMP:BTCUSD"
+        },
+        {
+          "s": "BITSTAMP:ETHUSD"
+        },
+        {
+          "s": "FTX:SOLUSD"
+        },
+        {
+          "s": "BINANCE:LUNAUSD"
+        },
+        {
+          "s": "COINBASE:UNIUSD"
+        }
+      ],
+      "quick_link": {
+        "title": "크립토커런시 더 보기",
+        "href": "/markets/cryptocurrencies/prices-all/"
+      }
+    },
+    {
+      "title": "비트코인",
+      "title_raw": "Bitcoin",
+      "symbols": [
+        {
+          "s": "BITSTAMP:BTCUSD"
+        },
+        {
+          "s": "COINBASE:BTCEUR"
+        },
+        {
+          "s": "COINBASE:BTCGBP"
+        },
+        {
+          "s": "BITFLYER:BTCJPY"
+        },
+        {
+          "s": "CEXIO:BTCRUB"
+        },
+        {
+          "s": "CME:BTC1!"
+        }
+      ],
+      "quick_link": {
+        "title": "비트코인 페어 더 보기",
+        "href": "/symbols/BTCUSD/markets/"
+      }
+    },
+    {
+      "title": "이더리움",
+      "title_raw": "Ethereum",
+      "symbols": [
+        {
+          "s": "BITSTAMP:ETHUSD"
+        },
+        {
+          "s": "KRAKEN:ETHEUR"
+        },
+        {
+          "s": "COINBASE:ETHGBP"
+        },
+        {
+          "s": "BITFLYER:ETHJPY"
+        },
+        {
+          "s": "BINANCE:ETHBTC"
+        },
+        {
+          "s": "BINANCE:ETHUSDT"
+        }
+      ],
+      "quick_link": {
+        "title": "이더리움 페어 더 보기",
+        "href": "/symbols/ETHUSD/markets/"
+      }
+    },
+    {
+      "title": "솔라나",
+      "title_raw": "Solana",
+      "symbols": [
+        {
+          "s": "FTX:SOLUSD"
+        },
+        {
+          "s": "BINANCE:SOLEUR"
+        },
+        {
+          "s": "COINBASE:SOLGBP"
+        },
+        {
+          "s": "BINANCE:SOLBTC"
+        },
+        {
+          "s": "HUOBI:SOLETH"
+        },
+        {
+          "s": "BINANCE:SOLUSDT"
+        }
+      ],
+      "quick_link": {
+        "title": "솔라나 페어 더 보기",
+        "href": "/symbols/SOLUSD/markets/"
+      }
+    },
+    {
+      "title": "유니스왑",
+      "title_raw": "Uniswap",
+      "symbols": [
+        {
+          "s": "COINBASE:UNIUSD"
+        },
+        {
+          "s": "KRAKEN:UNIEUR"
+        },
+        {
+          "s": "COINBASE:UNIGBP"
+        },
+        {
+          "s": "BINANCE:UNIBTC"
+        },
+        {
+          "s": "KRAKEN:UNIETH"
+        },
+        {
+          "s": "BINANCE:UNIUSDT"
+        }
+      ],
+      "quick_link": {
+        "title": "유니스왑 페어 더 보기",
+        "href": "/symbols/UNIUSD/markets/"
+      }
+    }
+  ],
+  "title_link": "/markets/cryptocurrencies/prices-all/",
+  "width": 800,
+  "height": 660,
+  "showChart": true,
+  "showFloatingTooltip": false,
+  "locale": "kr",
+  "plotLineColorGrowing": "#2962FF",
+  "plotLineColorFalling": "#2962FF",
+  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+  "gridLineColor": "rgba(240, 243, 250, 0)",
+  "scaleFontColor": "rgba(120, 123, 134, 1)",
+  "showSymbolLogo": true,
+  "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+  "colorTheme": "light"
+}
+
+
+
+
+                    </script>
+                </div>
+            </div>
+            <div class="trade-top right">
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript"
+                            src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+  {
+  "colorTheme": "light",
+  "isTransparent": false,
+  "width": 400,
+  "height": "660",
+  "locale": "kr",
+  "importanceFilter": "-1,0,1",
+  "currencyFilter": "KRW"
+}
+
+
+
+
+                    </script>
+                </div>
+                <!-- TradingView Widget END -->
+            </div>
+        </div>
+    </div>
+    <div class="trade-middle">
+        <div class="container-warp free">
+            <div class="fl">
+                <table class="middle-table">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="trade-low">
+        <h5>test</h5>
+    </div>
+</div>
+</div>
+{% include "footer.html" %}
+</body>
+</html>

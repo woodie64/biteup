@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+<title>회원가입 - biteup</title>
+<div id="container my-3">
+    <div id="contents" class="div-cont">
+        <div class="member-wrap join">
+            <form class="sub_form" method="post" autocomplete="off">
+                {{ form.csrf_token }}
+                <h3>REGISTER</h3>
+                <div class="entry">
+                    <div class="form-group">
+                        <input id="email" name="email" placeholder="Email" required
+                               type="text" value="{{ form.email.data or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <input id="username" name="username" placeholder="Name" required
+                               type="text" value="{{ form.username.data or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <input id="password1" name="password1" placeholder="Password" required
+                               type="password" value="{{ form.password1.data or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <input id="password2" name="password2" placeholder="Confirm Password" required
+                               type="password" value="{{ form.password2.data or '' }}">
+                    </div>
+                    <div class="form-group">
+                        <select id="passwd_question_se">
+                            <option value="">원하는 질문을 선택하세요.</option>
+                            <option value="가장 기억에 남는 장소는?">가장 기억에 남는 장소는?</option>
+                            <option value="나의 좌우명은?">나의 좌우명은?</option>
+                            <option value="나의 보물 제1호는?">나의 보물 제1호는?</option>
+                            <option value="가장 기억에 남는 선생님 성함은?">가장 기억에 남는 선생님 성함은?</option>
+                            <option value="다른 사람은 모르는 나만의 신체비밀은?">다른 사람은 모르는 나만의 신체비밀은?</option>
+                            <option value="오랫동안 기억하고 싶은 날짜는?">오랫동안 기억하고 싶은 날짜는?</option>
+                            <option value="가장 생각나는 친구 이름은?">가장 생각나는 친구 이름은?</option>
+                            <option value="내가 존경하는 인물은?">내가 존경하는 인물은?</option>
+                            <option value="다시 태어나면 되고 싶은 것은?">다시 태어나면 되고 싶은 것은?</option>
+                            <option value="내가 좋아하는 만화 캐릭터는?">내가 좋아하는 만화 캐릭터는?</option>
+                            <option value="초등학교 시절 나의 꿈은?">초등학교 시절 나의 꿈은?</option>
+                            <option value="나의 출신 초등학교는?">나의 출신 초등학교는?</option>
+                            <option value="우리집 애완동물의 이름은?">우리집 애완동물의 이름은?</option>
+                            <option value="나의 노래방 애창곡은?">나의 노래방 애창곡은?</option>
+                            <option value="본인의 출생지는?">본인의 출생지는?</option>
+                            <option value="word">직접입력</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input id="passwd_question" name="passwd_question" placeholder="Question"
+                               type="text" >
+                    </div>
+                    <div class="form-group">
+                        <input id="passwd_answer" name="passwd_answer" placeholder="Answer" required
+                               type="text" value="{{ form.passwd_answer.data or '' }}">
+                    </div>
+                </div>
+                {% include "form_errors.html" %}
+                <button type="submit" class="btn-join">가입하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $(function(){
+//직접입력 인풋박스
+$("#passwd_question").hide();
+$("#passwd_question_se").change(function() {
+
+     //직접입력을 누를 때 나타남
+		if($("#passwd_question_se").val() == "word") {
+			$("#passwd_question").show();
+		}  else {
+			$("#passwd_question").hide();
+		}
+	})
+});
+</script>
+{% endblock %}
