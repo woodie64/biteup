@@ -50,5 +50,5 @@ def reset():
                 user.password = generate_password_hash(form.password1.data)
                 db.session.add(user)
                 db.session.commit()
-                return '<script>alert("비밀번호가 변경되었습니다.");location.href=/profile/</script>'
+                return '<script>alert("비밀번호가 변경되었습니다");location.href=/profile/</script>'
     return render_template('profile/profile_reset.html', form=form)
