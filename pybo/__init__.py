@@ -29,17 +29,17 @@ def create_app():
     from . import models
 
     # 블루프린트
-    from .views import main_views, community_views, notice_views, answer_views, auth_views, vote_views, bit_views,\
+    from .views import main_views, community_views, notice_views, answer_views, auth_views, vote_views, index_views,\
         contact_views, profile_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(contact_views.bp)
     app.register_blueprint(community_views.bp)
     app.register_blueprint(profile_views.bp)
+    app.register_blueprint(index_views.bp)
     app.register_blueprint(notice_views.bp)
     app.register_blueprint(answer_views.bp)
     app.register_blueprint(auth_views.bp)
     app.register_blueprint(vote_views.bp)
-    app.register_blueprint(bit_views.bp)
 
     # 필터
     from .filter import format_datetime

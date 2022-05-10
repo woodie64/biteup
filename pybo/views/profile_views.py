@@ -19,10 +19,11 @@ def profile():
 @login_required
 def edit():
     form = EditProfileForm()
+    error = None
     if request.method == 'POST' and form.validate_on_submit():
-        user.username = form.username.data
-        user.location = form.location.data
-        user.about_me = form.about_me.data
+        user = User.query.filter_by(username=form.username.data,
+                                    location=form.location.data,
+                                    about_me=form.about_me.data)
         db.session.add(user)
         db.session.commit()
         flash('프로필을 수정하였습니다.')

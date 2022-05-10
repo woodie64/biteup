@@ -16,5 +16,5 @@ def qna():
                           message=form.message.data)
         db.session.add(contact)
         db.session.commit()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('index.index'))
     return render_template('contact/contact_form.html', form=form)

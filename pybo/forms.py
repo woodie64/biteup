@@ -64,6 +64,7 @@ class EditProfileForm(FlaskForm):
     about_me = TextAreaField('나는 ')
     submit = SubmitField('저장')
 
+
 class EditProfileAdminForm(FlaskForm):
     username = StringField('이름', validators=[Length(0, 64)])
     location = StringField('사는 곳', validators=[Length(0, 64)])
