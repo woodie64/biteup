@@ -118,12 +118,16 @@
 
 
  .copyright{text-align:center}
- .container-warp.exchange{margin: 0 auto;width:1200px;height:600px;margin-top:30px;padding:20px 0px 60px 0px;float:left;}
- .div-exchange{position: relative;display:flex;}
- tradingview-widget-container{}
+ .div-exchange{position: relative;padding:20px 0px 60px 0px;}
+ .container-warp.exchange-high{margin: 0 auto;width:1600px;height:600px;margin-top:30px;display:flex;}
+ .exchange-left{width:1300px;height:600px;float:left;}
+ .exchange-right{width:300px;height:600px;float:right;}
+ .container-warp.exchange-low{margin: 0 auto;width:1600px;height:600px;margin-top:10px;}
+ .exchange-low{width:1600px;height:490px;}
 
 
-
+ .ck.ck-editor {max-width: 1200px;}
+ .ck-editor__editable {min-height: 400px;}
 
 
 

@@ -54,7 +54,7 @@ def create():
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user)
         db.session.add(community)
         db.session.commit()
-        return '<script>alert("생성되었습니다.");location.href="/community/list"</script>'
+        return '<script>alert("작성되었습니다..");location.href="/community/list"</script>'
     return render_template('community/community_form.html', form=form)
 
 

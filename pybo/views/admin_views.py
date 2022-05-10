@@ -23,8 +23,6 @@ def login():
 def _list():
     print("/list")
     user_list = User.query.order_by(User.id.asc())
-    for user in user_list:
-        print(user.email)
     return render_template('admin/admin_list.html', user_list=user_list)
 
 
@@ -46,3 +44,11 @@ def user_delete(user_id):
 @login_required
 def main():
     return render_template('admin/admin_form.html')
+
+
+@bp.route('/contact/', methods=('GET', 'POST'))
+@login_required
+def contact():
+    print("/contact")
+    contact_list = User.query.order_by(User.id.asc())
+    return render_template('admin/admin_contactus.html', contact_list=contact_list)

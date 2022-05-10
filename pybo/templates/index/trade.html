@@ -205,31 +205,38 @@
                     <span>더보기</span>
                 </a>
                 <div class="list">
-                    {% if community_list %}
-                    {% for community in community_list.items %}
-                    <ul>
-                        <li>
-                            <a href="{{ url_for('community.detail', community_id=community.id) }}" class="new">
-                                <p class="num">1</p>
-                                <p class="btxt" style="padding-right:5px;max-width:80%">
-                                    <span class="txt">{{ community.subject }}</span>
-                                </p>
-                                <span class="hit">""</span>
-                                <div>
-                                    <p class="stxt">{{ community.user.username }}</p>
-                                    <p class="date">
-                                        <span>{{ community.create_date|datetime }}</span>
-                                    </p>
-                                </div>
-                                {% endfor %}
-                                {% else %}
-                                <div>
-                                    <td colspan="3">내용이 없습니다.</td>
-                                </div>
-                                {% endif %}
-                            </a>
-                        </li>
-                    </ul>
+                    <table class="table">
+                <thead>
+                <tr class="text-center thead-dark">
+                    <th>No.</th>
+                    <th style="width:50%">제목</th>
+                    <th>작성자</th>
+                    <th>작성일시</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if community_list %}
+                {% for community in community_list.items %}
+                <tr class="text-center">
+                    <td>{{ community_list.total - ((community_list.page-1) * community_list.per_page) - loop.index0 }}</td>
+                    <td class="text-left">
+                        <a href="{{ url_for('community.detail', community_id=community.id) }}">{{ community.subject }}</a>
+                        {% if community.answer_set|length > 0 %}
+                        <span class="text-danger small ml-2">{{ community.answer_set|length }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ community.user.username }}</td>  <!-- 글쓴이 추가 -->
+                    <td>{{ community.create_date|datetime }}</td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="3">내용이 없습니다.</td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+
                 </div>
             </div>
         </div>
