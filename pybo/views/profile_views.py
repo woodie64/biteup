@@ -18,14 +18,20 @@ def profile():
 @bp.route('/edit/', methods=('GET', 'POST'))
 @login_required
 def edit():
+    print("/edit")
     form = EditProfileForm()
-    error = None
     if request.method == 'POST' and form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data,
-                                    location=form.location.data,
-                                    about_me=form.about_me.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('프로필을 수정하였습니다.')
-        return redirect(url_for('profile.profile'))
+        try:
+            email = g.user.email
+            user = User.query.filter_by(email=email).first()
+            user.username = request.form['username']
+            user.location = request.form['location']
+            user.about_me = request.form['about_me']
+            db.session.add(user)
+            db.session.commit()
+            flash('프로필을 수정하였습니다.')
+            return redirect(url_for('profile.profile'))
+        except:
+            print("profile edit error")
+
     return render_template('profile/profile_edit.html', form=form)
