@@ -12,7 +12,6 @@ def _list():
     # 조회
     community_list = Community.query.order_by(Community.create_date.desc())
     if kw:
-        search = '%%{}%%'.format(kw)
         sub_query = db.session.query(Answer.community_id, Answer.content, User.username) \
             .join(User, Answer.user_id == User.id).subquery()
         community_list = community_list \

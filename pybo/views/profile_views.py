@@ -30,10 +30,10 @@ def edit():
             user.about_me = request.form['about_me']
             db.session.add(user)
             db.session.commit()
-            return '<script>alert("프로필을 수정하였습니다.");location.href=/profile/</script>'
+            flash('프로필을 수정하였습니다.')
+            return redirect(url_for('profile.profile'))
         except:
             print("profile edit error")
-            return '<script>alert("error");location.href=/profile/</script>'
     return render_template('profile/profile_edit.html', form=form)
 
 
@@ -44,15 +44,16 @@ def reset():
     if request.method == 'POST' and form.validate_on_submit():
         user = User.query.filter_by(email=g.user.email).first()
         if not check_password_hash(user.password, form.password.data):
-            return '<script>alert("현재 비밀번호가 일치하지 않습니다.");location.href="/profile/reset/"</script>'
+            error = '현재 비밀번호가 일치하지 않습니다'
+            flash(error)
         else :
             if form.password1.data == form.password2.data:
                 user.password = generate_password_hash(form.password1.data)
+                flash("비밀번호가 변경되었습니다.")
                 db.session.add(user)
                 db.session.commit()
-                return '<script>alert("비밀번호가 변경되었습니다.");location.href=/profile/</script>'
-
-            # 2차 검증
-            # else :
-            #     return '<script>alert("새 비밀번호가 일치하지 않습니다.");location.href="/profile/reset/"</script>'
+                return redirect(url_for('profile.profile'))
+            else :
+                error = '새 비밀번호 재입력 해주세요.'
+                flash(error)
     return render_template('profile/profile_reset.html', form=form)
