@@ -28,18 +28,20 @@ def create(community_id):
 @login_required
 def modify(answer_id):
     answer = Answer.query.get_or_404(answer_id)
+    form = AnswerForm(obj=answer)
     if g.user != answer.user:
-        flash('수정권한이 없습니다')
-        return redirect(url_for('community.detail', community_id=answer.community.id))
+        # flash('수정권한이 없습니다')
+        return '<script>alert("수정권한이 없습니다");location.href="/answer/detail/' + str(answer.community.id) + '"</script>'
+        # return redirect(url_for('community.detail', community_id=answer.community.id))
     if request.method == "POST":
         form = AnswerForm()
         if form.validate_on_submit():
             form.populate_obj(answer)
             answer.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
-            return redirect(url_for('community.detail', community_id=answer.community.id))
-    else:
-        form = AnswerForm(obj=answer)
+            return '<script>alert("수정되었습니다.");location.href="/community/detail/' + str(answer.community.id) + '"</script>'
+            # return redirect(url_for('community.detail', community_id=answer.community.id))
+
     return render_template('answer/answer_form.html', form=form)
 
 
@@ -49,10 +51,12 @@ def delete(answer_id):
     answer = Answer.query.get_or_404(answer_id)
     community_id = answer.community.id
     if g.user != answer.user:
-        flash('삭제권한이 없습니다')
+        # flash('삭제권한이 없습니다')
+        return '<script>alert("삭제권한이 없습니다");location.href="/community/detail/'+str(community_id)+'"</script>'
     else:
         db.session.delete(answer)
         db.session.commit()
+        return '<script>alert("삭제되었습니다.");location.href="/community/detail/'+str(community_id) + '"</script>'
     return redirect(url_for('community.detail', community_id=community_id))
 
 

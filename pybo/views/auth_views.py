@@ -34,9 +34,10 @@ def signup():
                         passwd_answer=form.passwd_answer.data)
             db.session.add(user)
             db.session.commit()
-            return redirect(url_for('main.index'))
+            # return redirect(url_for('main.index'))
+            return '<script>alert("계정이 생성되었습니다.");location.href="/"</script>'
         else:
-            flash('이미 존재하는 사용자입니다.')
+            return '<script>alert("이미 존재하는 계정입니다.");location.href="/auth/signup"</script>'
     return render_template('auth/signup.html', form=form)
 
 
@@ -91,8 +92,9 @@ def password_reset():
                                     username=form.username.data,
                                     passwd_answer=form.passwd_answer.data).first()
         if not user:
-            error = '등록되지 않은 사용자 정보입니다.'
-            flash(error)
+            # error = '등록되지 않은 사용자 정보입니다.'
+            return '<script>alert("등록되지 않은 사용자 정보입니다.");location.href="/auth/password_reset"</script>'
+            # flash(error)
         if error is None:
             return redirect(url_for('auth.password_reset_confirm', id=form.email.data))
     return render_template('auth/password_reset.html', form=form)
@@ -106,6 +108,7 @@ def password_reset_confirm():
         user.password = generate_password_hash(form.password1.data)
         db.session.add(user)
         db.session.commit()
-        flash("비밀번호가 변경되었습니다.")
-        return redirect(url_for('auth.login'))
+        # flash("비밀번호가 변경되었습니다.")
+        # return redirect(url_for('auth.login'))
+        return '<script>alert("비밀번호가 변경되었습니다.");location.href="/auth/login"</script>'
     return render_template('auth/password_reset_confirm.html', form=form)

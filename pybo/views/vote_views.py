@@ -13,7 +13,9 @@ bp = Blueprint('vote', __name__, url_prefix='/vote')
 def community(community_id):
     _community = Community.query.get_or_404(community_id)
     if g.user == _community.user:
-        flash('본인이 작성한 글은 추천할 수 없습니다')
+        # flash('본인이 작성한 글은 추천할 수 없습니다')
+        # return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");</script>'
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     else:
         _community.voter.append(g.user)
         db.session.commit()
@@ -25,10 +27,13 @@ def community(community_id):
 def answer(answer_id):
     _answer = Answer.query.get_or_404(answer_id)
     if g.user == _answer.user:
-        flash('본인이 작성한 글은 추천할 수 없습니다')
+        # flash('본인이 작성한 글은 추천할 수 없습니다')
+        #return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");</script>'
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/community/detail/' + str(answer_id) + '"</script>'
     else:
         _answer.voter.append(g.user)
         db.session.commit()
+        return '<script>alert("추천되었습니다.");location.href="/answer/' + str(answer_id) + '"</script>'
     return redirect(url_for('community.detail', community_id=_answer.community.id))
 
 

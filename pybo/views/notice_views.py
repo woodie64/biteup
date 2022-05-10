@@ -53,7 +53,8 @@ def create():
         notice = Notice(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user)
         db.session.add(notice)
         db.session.commit()
-        return redirect(url_for('notice._list'))
+        # return redirect(url_for('notice._list'))
+        return '<script>alert("생성되었습니다.");location.href="/notice/list"</script>'
     return render_template('notice/notice_form.html', form=form)
 
 
@@ -62,15 +63,16 @@ def create():
 def modify(notice_id):
     notice = Notice.query.get_or_404(notice_id)
     if g.user != notice.user:
-        flash('수정권한이    없습니다')
-        return redirect(url_for('notice.detail', notice_id=notice_id))
+        return '<script>alert("수정 권한이 없습니다.");location.href=/profile/</script>'
+        # return redirect(url_for('notice.detail', notice_id=notice_id))
     if request.method == 'POST':  # POST 요청
         form = NoticeForm()
         if form.validate_on_submit():
             form.populate_obj(notice)
             notice.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
-            return redirect(url_for('notice.detail', notice_id=notice_id))
+            # return redirect(url_for('notice.detail', notice_id=notice_id))
+            return '<script>alert("수정되었습니다.");location.href=/notice/detail</script>'
     else:  # GET 요청
         form = NoticeForm(obj=notice)
     return render_template('notice/notice_form.html', form=form)
@@ -82,7 +84,8 @@ def delete(notice_id):
     notice = Notice.query.get_or_404(notice_id)
     if g.user != notice.user:
         flash('삭제권한이 없습니다')
-        return redirect(url_for('notice.detail', notice_id=notice_id))
+        return '<script>alert("삭제 권한이 없습니다.");location.href=/notice/detail</script>'
+        # return redirect(url_for('notice.detail', notice_id=notice_id))
     db.session.delete(notice)
     db.session.commit()
     return redirect(url_for('notice._list'))

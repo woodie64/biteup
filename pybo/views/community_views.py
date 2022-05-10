@@ -48,29 +48,32 @@ def detail(community_id):
 @bp.route('/create/', methods=('GET', 'POST'))
 @login_required
 def create():
+    print("/create/")
     form = CommunityForm()
     if request.method == 'POST' and form.validate_on_submit():
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user)
         db.session.add(community)
         db.session.commit()
-        return redirect(url_for('community._list'))
+        return '<script>alert("생성되었습니다.");location.href="/community/list"</script>'
     return render_template('community/community_form.html', form=form)
 
 
 @bp.route('/modify/<int:community_id>', methods=('GET', 'POST'))
 @login_required
 def modify(community_id):
+    print("/modify/<int:community_id>")
     community = Community.query.get_or_404(community_id)
     if g.user != community.user:
-        flash('수정권한이 없습니다')
-        return redirect(url_for('community.detail', community_id=community_id))
+        # return redirect(url_for('community.detail', community_id=community_id))
+        return '<script>alert("수정권한이 없습니다");location.href="/community/detail/'+str(community_id)+'"</script>'
     if request.method == 'POST':  # POST 요청
         form = CommunityForm()
         if form.validate_on_submit():
             form.populate_obj(community)
             community.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
-            return redirect(url_for('community.detail', community_id=community_id))
+            # return redirect(url_for('community.detail', community_id=community_id))
+            return '<script>alert("수정되었습니다.");location.href="/community/detail/'+str(community_id)+'"</script>'
     else:  # GET 요청
         form = CommunityForm(obj=community)
     return render_template('community/community_form.html', form=form)
@@ -81,8 +84,8 @@ def modify(community_id):
 def delete(community_id):
     community = Community.query.get_or_404(community_id)
     if g.user != community.user:
-        flash('삭제권한이 없습니다')
-        return redirect(url_for('community.detail', community_id=community_id))
+        return '<script>alert("삭제 권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     db.session.delete(community)
     db.session.commit()
-    return redirect(url_for('community._list'))
+    # return redirect(url_for('community._list'))
+    return '<script>alert("삭제되었습니다.");location.href="/community/list"</script>'
