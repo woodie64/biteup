@@ -200,6 +200,12 @@
 
 
 
+
+
+
+
+
+
                     </script>
                 </div>
             </div>
@@ -218,10 +224,6 @@
   "importanceFilter": "-1,0,1",
   "currencyFilter": "KRW"
 }
-
-
-
-
                     </script>
                 </div>
                 <!-- TradingView Widget END -->
@@ -229,18 +231,45 @@
         </div>
     </div>
     <div class="trade-middle">
-        <div class="container-warp free">
+        <div class="container-warp main-list">
             <div class="fl">
-                <table class="middle-table">
-
-                </table>
+                <h3>실시간 게시물</h3>
+                <a href="{{ url_for('community._list') }}" class="more">
+                    <span>더보기</span>
+                </a>
+                <div class="list">
+                    {% if community_list %}
+                    {% for community in community_list.items %}
+                    <ul>
+                        <li>
+                            <a href="{{ url_for('community.detail', community_id=community.id) }}" class="new">
+                                <p class="num">1</p>
+                                <p class="btxt" style="padding-right:5px;max-width:80%">
+                                    <span class="txt">{{ community.subject }}</span>
+                                </p>
+                                <span class="hit">""</span>
+                                <div>
+                                    <p class="stxt">{{ community.user.username }}</p>
+                                    <p class="date">
+                                        <span>{{ community.create_date|datetime }}</span>
+                                    </p>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <div>
+                                    <td colspan="3">내용이 없습니다.</td>
+                                </div>
+                                {% endif %}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     <div class="trade-low">
-        <h5>test</h5>
+        test
     </div>
-</div>
 </div>
 {% include "footer.html" %}
 </body>

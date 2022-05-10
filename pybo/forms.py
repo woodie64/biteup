@@ -1,5 +1,3 @@
-from attr import validators
-from django.db.models import TextField
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, EmailField, \
     SelectField, SelectMultipleField, FieldList, SubmitField, FileField  # AgreeField

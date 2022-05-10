@@ -64,7 +64,7 @@
   .trade-top.right{float:right;display:flex;}
   .trade-middle{width: 100%;margin: 0 auto;box-sizing: border-box;padding: 20px 0px 100px 0px;position: relative;display:flex;background:#fff;}
   .trade-low{width: 100%;margin: 0 auto;box-sizing: border-box;padding: 20px 0px 100px 0px;position: relative;display:flex;}
-  .container-warp.free{width:900px;margin: 0 auto;}
+  .container-warp.main-list{width:900px;margin: 0 auto;}
   .form-group .form-control{margin-top:50px;}
 
   .row.my-3{margin-bottom:5px}
@@ -77,6 +77,7 @@
   .badge-light.p-2.text-left .mb-2{font-size:15px;}
   .badge-light.p-2.text-left .my-3{margin-top:5px;}
   .table .thead-dark th {color: #3e3e3e;background-color: #ededed;border-color: #dfdfdf;}
+  .table-middle {color: #3e3e3e;background-color: #ededed;border-color: #dfdfdf;}
 
 
 

@@ -10,13 +10,6 @@ from ..models import Notice, Answer, User
 bp = Blueprint('notice', __name__, url_prefix='/notice')
 
 
-from django.views.decorators.csrf import csrf_exempt
-
-@csrf_exempt
-def my_view(request):
-    return HttpResponse('Hello world')
-
-
 @bp.route('/list/')
 def _list():
     # 입력 파라미터
