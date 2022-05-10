@@ -31,10 +31,13 @@ def _list():
 @bp.route('/user_delete/<int:user_id>', methods=('GET', 'POST'))
 def user_delete(user_id):
     if g.user.email == "admin@naver.com":
-        user = User.query.get_or_404(user_id)
-        db.session.delete(user)
-        db.session.commit()
-        return '<script>alert("삭제되었습니다.");location.href="/admin/list"</script>'
+        if user_id=="1":
+            return '<script>alert("관리자 계정은 삭제가 불가능합니다.");location.href="/admin/list"</script>'
+        else:
+            user = User.query.get_or_404(user_id)
+            db.session.delete(user)
+            db.session.commit()
+            return '<script>alert("삭제되었습니다.");location.href="/admin/list"</script>'
     else:
         return '<script>alert("관리자가 아닙니다.");location.href="/"</script>'
 
