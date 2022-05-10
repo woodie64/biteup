@@ -23,8 +23,6 @@ def login():
 def _list():
     print("/list")
     user_list = User.query.order_by(User.id.asc())
-    for user in user_list:
-        print(user.email)
     return render_template('admin/admin_list.html', user_list=user_list)
 
 
