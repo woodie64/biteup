@@ -6,7 +6,11 @@
                     <td>{{ user.username }}</td>
                     <td>{{ user.email }}</td>
                 </tr>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary "
+                               data-uri="{{ url_for('admin._list', user_id=user.id) }}">삭제</a>
     {% endfor %}
 
 
 {% endblock %}
+
+

@@ -25,15 +25,3 @@ def user_detail():
         print(user.email)
     return render_template('admin/admin_list.html', user_list=user_list)
 
-
-@bp.route('/user_delete/<int:user_id>', methods=('GET', 'POST'))
-def user_delete(user_id):
-    if g.user.email == "root@naver.com":
-        user = User.query.get_or_404(user_id)
-        db.session.delete(user)
-        db.session.commit()
-        return '<script>alert("삭제되었습니다.");</script>'
-    else:
-        return '<script>alert("관리자가 아닙니다.");</script>'
-
-
