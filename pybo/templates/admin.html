@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="no-js " lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+    <title>Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-jvectormap-2.0.3.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/plugin.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/morris.min.css') }}"/>
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}"/>
+
+    <script src="{{ url_for('static', filename='js/libscripts.bundle.js') }}"></script>
+    <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
+    <script src="{{ url_for('static', filename='js/vendorscripts.bundle.js') }}"></script> <!-- slimscroll, waves Scripts Plugin Js -->
+    <script src="{{ url_for('static', filename='js/jvectormap.bundle.js') }}"></script> <!-- JVectorMap Plugin Js -->
+    <script src="{{ url_for('static', filename='js/sparkline.bundle.js') }}"></script> <!-- Sparkline Plugin Js -->
+    <script src="{{ url_for('static', filename='js/c3.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mainscripts.bundle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+
+<body class="theme-blush">
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- 자바스크립트 Start -->
+{% block script %}
+{% endblock %}
+<!-- 자바스크립트 End -->
+</body>
+</html>

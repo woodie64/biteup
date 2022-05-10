@@ -64,4 +64,3 @@ class Contact(db.Model):
     username = db.Column(db.String(150), unique=True, nullable=False)
     subject = db.Column(db.String(200), nullable=False)
     message = db.Column(db.Text(), nullable=False)
-

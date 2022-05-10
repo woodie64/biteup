@@ -30,10 +30,10 @@ def edit():
             user.about_me = request.form['about_me']
             db.session.add(user)
             db.session.commit()
-            flash('프로필을 수정하였습니다.')
+            flash()
             return redirect(url_for('profile.profile'))
         except:
-            print("profile edit error")
+            print("다시 입력해주세요.")
     return render_template('profile/profile_edit.html', form=form)
 
 
@@ -49,7 +49,6 @@ def reset():
         else :
             if form.password1.data == form.password2.data:
                 user.password = generate_password_hash(form.password1.data)
-                flash("비밀번호가 변경되었습니다.")
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for('profile.profile'))

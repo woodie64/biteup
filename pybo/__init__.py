@@ -30,7 +30,8 @@ def create_app():
 
     # 블루프린트
     from .views import main_views, community_views, notice_views, answer_views, auth_views, vote_views, index_views,\
-        contact_views, profile_views
+        contact_views, profile_views, admin_views
+    app.register_blueprint(admin_views.bp)
     app.register_blueprint(main_views.bp)
     app.register_blueprint(contact_views.bp)
     app.register_blueprint(community_views.bp)
