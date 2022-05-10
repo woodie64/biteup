@@ -13,15 +13,33 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 def login():
     if g.user.email == "admin@naver.com":
-        return '<script>alert("관리자 입니다.");location.href="/admin/user_detail/wejrknwjernnwjrjknwwjenr"</script>'
+        return '<script>alert("관리자 입니다.");location.href="/admin/main/"</script>'
+    else:
+        return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'
 
 
-@bp.route('/user_detail/wejrknwjernnwjrjknwwjenr', methods=('GET', 'POST'))
+@bp.route('/list/', methods=('GET', 'POST'))
 @login_required
-def user_detail():
-    print("/user_detail/wejrknwjernnwjrjknwwjenr")
+def _list():
+    print("/list")
     user_list = User.query.order_by(User.id.desc())
     for user in user_list:
         print(user.email)
     return render_template('admin/admin_list.html', user_list=user_list)
 
+
+@bp.route('/user_delete/<int:user_id>', methods=('GET', 'POST'))
+def user_delete(user_id):
+    if g.user.email == "admin@naver.com":
+        user = User.query.get_or_404(user_id)
+        db.session.delete(user)
+        db.session.commit()
+        return '<script>alert("삭제되었습니다.");location.href="/admin/list"</script>'
+    else:
+        return '<script>alert("관리자가 아닙니다.");location.href="/"</script>'
+
+
+@bp.route('/main/', methods=('GET', 'POST'))
+@login_required
+def main():
+    return render_template('admin/admin_form.html')
