@@ -23,8 +23,7 @@
                         <td class="td_id">{{ user.id }}</td>
                         <td class="td_username">{{ user.username }}</td>
                         <td class="td_email">{{ user.email }}</td>
-                        <td class="td_delete"><a href="#" class="delete btn btn-sm btn-outline-secondary "
-                               data-uri="{{ url_for('admin._list', user_id=user.id) }}">삭제</a></td>
+                        <td class="td_delete"><a href="{{ url_for('admin.user_delete', user_id=user.id) }}" class="delete btn btn-sm btn-outline-secondary ">삭제</a></td>
                     </tr>
                     {% endfor %}
                     </tbody>
