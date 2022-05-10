@@ -13,15 +13,20 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 def login():
     if g.user.email == "admin@naver.com":
-        return '<script>alert("관리자 입니다.");location.href="/admin/user_detail/wejrknwjernnwjrjknwwjenr"</script>'
+        return '<script>alert("관리자 입니다.");location.href="/admin/main/"</script>'
 
 
-@bp.route('/user_detail/wejrknwjernnwjrjknwwjenr', methods=('GET', 'POST'))
+@bp.route('/list/', methods=('GET', 'POST'))
 @login_required
-def user_detail():
-    print("/user_detail/wejrknwjernnwjrjknwwjenr")
+def _list():
+    print("/list")
     user_list = User.query.order_by(User.id.desc())
     for user in user_list:
         print(user.email)
     return render_template('admin/admin_list.html', user_list=user_list)
 
+
+@bp.route('/main/', methods=('GET', 'POST'))
+@login_required
+def main():
+    return render_template('admin/admin_form.html')
