@@ -44,3 +44,11 @@ def user_delete(user_id):
 @login_required
 def main():
     return render_template('admin/admin_form.html')
+
+
+@bp.route('/contact/', methods=('GET', 'POST'))
+@login_required
+def contact():
+    print("/contact")
+    contact_list = User.query.order_by(User.id.asc())
+    return render_template('admin/admin_contactus.html', contact_list=contact_list)

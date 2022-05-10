@@ -6,46 +6,27 @@
         <div class="container-warp list">
             <h5 class="my-3 border-bottom pb-2">자유게시판 등록</h5>
             <form method="post" class="post-form my-3">
-                <input id="csrf_token" name="csrf_token" type="hidden"
-                       value="ImUxODA2ZDY5NWQ1ZWQ0MjQyM2IxOTg1NWRkNWM0N2ZmNTdmNDI5ZDci.YnqO0g.KgtHa6YRMF7hRWaoAD04orw_YXE">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-                <!-- 클래식 에디터 -->
-                <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
-
-                <!-- 넓이 높이 조절 -->
-                <style>
-                        .ck.ck-editor {
-                            max-width: 1200px;
-                        }
-                        .ck-editor__editable {
-                            min-height: 700px;
-                        }
-
-                </style>
-                </head>
-                <body>
-                <div id="classic">
-                    <p>This is some sample content.</p>
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    <label for="subject">제목</label>
+                    <input type="text" class="form-control" name="subject" id="subject" required
+                           value="{{ form.subject.data or '' }}">
+                </div>
+                <div class="form-group">
+                    <label for="content">내용</label>
+                    <textarea class="form-control" name="content"
+                              id="content" rows="10" required>{{ form.content.data or '' }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="upload">파일</label>
-                    <form method="post" action="http://localhost:5000/community/create" enctype="multipart/form-data">
-                        <input type="file" class="form-control" name="file" id="upload">
-                    </form>
+                    <input type="file" class="form-control" name="file" id="upload">
                 </div>
-                <script>
-                            ClassicEditor
-                                .create( document.querySelector( '#classic' ))
-                                .catch( error => {
-                                    console.error( error );
-                                } );
-
-                </script>
                 <button type="submit" class="btn btn-primary">작성완료</button>
-                </body>
             </form>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block script %}
+
 {% endblock %}
