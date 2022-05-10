@@ -6,13 +6,13 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/icon.png') }}">
-    <title>Admin</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-jvectormap-2.0.3.min.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/plugin.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/morris.min.css') }}"/>
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/admin_style.css') }}"/>
 
     <script src="{{ url_for('static', filename='js/libscripts.bundle.js') }}"></script>
     <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
@@ -146,7 +146,7 @@
                 <div class="user-info">
                     <a class="image" href="profile.html"></a>
                     <div class="detail">
-                        <h4>web8</h4>
+                        <h4>{{ g.user.username }}</h4>
                         <small>Admin</small>
                     </div>
                 </div>
