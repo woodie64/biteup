@@ -41,7 +41,6 @@ class ContactForm(FlaskForm):
 
 
 # 게시판
-
 class AnswerForm(FlaskForm):
     content = TextAreaField('내용', validators=[DataRequired('내용은 필수입력 항목입니다.')])
 
@@ -56,15 +55,22 @@ class NoticeForm(FlaskForm):
     content = TextAreaField('내용', validators=[DataRequired('내용은 필수입력 항목입니다.')])
 
 
+# 프로필
 class EditProfileForm(FlaskForm):
-    username = StringField('이름', validators=[Length(0, 64)])
-    location = StringField('사는 곳', validators=[Length(0, 64)])
-    about_me = TextAreaField('나는 ')
+    username = StringField('이름', validators=[DataRequired(), Length(min=3, max=10, message=('3자에서 10자 이하로 입력해주세요.'))])
+    location = StringField('주소', validators=[Length(0, 64)])
+    about_me = TextAreaField('자기소개')
     submit = SubmitField('저장')
+
+
+class EditPasswordForm(FlaskForm):
+    password = PasswordField('현재 비밀번호', validators=[DataRequired()])
+    password1 = PasswordField('새 비밀번호', validators=[DataRequired(), EqualTo('password2', '비밀번호가 일치하지 않습니다')])
+    password2 = PasswordField('새 비밀번호 확인', validators=[DataRequired()])
 
 
 class EditProfileAdminForm(FlaskForm):
     username = StringField('이름', validators=[Length(0, 64)])
-    location = StringField('사는 곳', validators=[Length(0, 64)])
-    about_me = TextAreaField('나는 ')
+    location = StringField('주소', validators=[Length(0, 64)])
+    about_me = TextAreaField('자기소개')
     submit = SubmitField('저장')

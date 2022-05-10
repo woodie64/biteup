@@ -6,14 +6,13 @@
         <div class="container-warp list">
             <h5 class="my-3 border-bottom pb-2">프로필</h5>
             <div class="profile-group">
-                <h3>E-mail: {{ g.user.email }}</h3>
-                <h3>Name: {{ g.user.username }}</h3>
-                <h3>Location: {{ g.user.location }}</h3>
-                <h3>About Me: {{ g.user.about_me }}</h3>
+                <h3>이메일: {{ g.user.email }}</h3>
+                <h3>이름: {{ g.user.username }}</h3>
+                <h3>주소: {{ g.user.location }}</h3>
+                <h3>자기소개: {{ g.user.about_me }}</h3>
             </div>
-
             <a class="btn btn-secondary m-1" href="{{ url_for('profile.edit') }}">프로필 수정</a>
-
+            <a class="btn btn-secondary m-1" href="{{ url_for('profile.reset') }}">비밀번호 변경</a>
         </div>
     </div>
 </div>

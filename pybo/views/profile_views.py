@@ -29,9 +29,28 @@ def edit():
             user.about_me = request.form['about_me']
             db.session.add(user)
             db.session.commit()
-            flash('프로필을 수정하였습니다.')
+            alt('프로필을 수정하였습니다.')
             return redirect(url_for('profile.profile'))
         except:
             print("profile edit error")
-
     return render_template('profile/profile_edit.html', form=form)
+
+
+@bp.route('/reset/', methods=('GET', 'POST'))
+def reset():
+    form = EditPasswordForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        error = None
+        user = User.query.filter_by(email=request.args['id']).first()
+        if not check_password_hash(user.password, form.password.data):
+            error = '현재 비밀번호가 일치하지 않습니다'
+        elif not User:
+            user = generate_password_hash(form.password1.data)
+            error = '새 비밀번호가 일치하지 않습니다'
+        if error is None:
+            db.session.add(user)
+            db.session.commit()
+        flash("비밀번호가 변경되었습니다.")
+        return redirect(url_for('profile.profile'))
+    flash(error)
+    return render_template('profile/profile_reset.html', form=form)

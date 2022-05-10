@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr" xmlns:dark="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>biteup - 코인 커뮤니티</title>
-    <link rel="icon" type="image/x-icon"
-          href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-          crossorigin="anonymous">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-</head>
-<body>
-<!-- 네비게이션바 -->
-{% include "navbar.html" %}
-<!--증시현황-->
-{% include "float.html" %}
+{% extends 'base.html' %}
+{% block content %}
+<title>biteup - 코인 커뮤니티</title>
 <div class="container my-3">
     <div id="contents" class="div-trade">
         <div class="container-warp main">
-            {% block content %}
-            {% endblock %}
+
             <div class="trade-top left">
                 <!-- TradingView Widget BEGIN -->
                 <div class="tradingview-widget-container">
@@ -268,9 +246,7 @@
         </div>
     </div>
     <div class="trade-low">
-        test
+        <h2>test</h2>
     </div>
 </div>
-{% include "footer.html" %}
-</body>
-</html>
+{% endblock %}
