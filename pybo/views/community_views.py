@@ -54,11 +54,11 @@ def create():
     form = CommunityForm()
 
     if request.method == 'POST' and form.validate_on_submit():
-
         try:
             f = request.files['file']
             filename=secure_filename(f.filename)
             path = os.getcwd()
+            print(path)
             UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
             print(UPLOAD_FOLDER)
             f.save(UPLOAD_FOLDER+"\\"+filename)
