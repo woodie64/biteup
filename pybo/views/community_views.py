@@ -1,7 +1,9 @@
+import os
 from datetime import datetime
 from pybo.views.auth_views import login_required
 from flask import Blueprint, render_template, request, url_for, g, flash
 from werkzeug.utils import redirect
+from werkzeug.utils import secure_filename
 
 from .. import db
 from ..forms import CommunityForm, AnswerForm
@@ -9,7 +11,7 @@ from ..models import Community, Answer, User
 
 bp = Blueprint('community', __name__, url_prefix='/community')
 
-
+file_path = "templates/upload_file/"
 @bp.route('/list/')
 def _list():
     # 입력 파라미터
@@ -50,7 +52,20 @@ def detail(community_id):
 def create():
     print("/create/")
     form = CommunityForm()
+
     if request.method == 'POST' and form.validate_on_submit():
+
+        try:
+            f = request.files['file']
+            filename=secure_filename(f.filename)
+            path = os.getcwd()
+            UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
+            print(UPLOAD_FOLDER)
+            f.save(UPLOAD_FOLDER+"\\"+filename)
+        except:
+            print("error")
+            return '<script>alert("에러 발생.");location.href="/community/create/"</script>'
+        # f.save(secure_filename(f.filename))
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user)
         db.session.add(community)
         db.session.commit()
