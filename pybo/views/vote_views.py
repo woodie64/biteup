@@ -2,7 +2,7 @@ from flask import Blueprint, url_for, flash, g
 from werkzeug.utils import redirect
 
 from pybo import db
-from pybo.models import Community, Notice, Answer
+from pybo.models import Community, Notice, Answer, Anotice
 from pybo.views.auth_views import login_required
 
 bp = Blueprint('vote', __name__, url_prefix='/vote')
@@ -39,25 +39,26 @@ def answer(answer_id):
 
 # Notice
 
-# @bp.route('/notice/<int:notice_id>/')
-# @login_required
-# def notice(notice_id):
-#     _notice = Notice.query.get_or_404(notice_id)
-#     if g.user == _notice.user:
-#         flash('본인이 작성한 글은 추천할 수 없습니다')
-#     else:
-#         _notice.voter.append(g.user)
-#         db.session.commit()
-#     return redirect(url_for('notice.detail', notice_id=notice_id))
-#
-#
-# @bp.route('/answer/<int:answer_id>/')
-# @login_required
-# def answer(answer_id):
-#     _answer = Answer.query.get_or_404(answer_id)
-#     if g.user == _answer.user:
-#         flash('본인이 작성한 글은 추천할 수 없습니다')
-#     else:
-#         _answer.voter.append(g.user)
-#         db.session.commit()
-#     return redirect(url_for('notice.detail', notice_id=_answer.notice.id))
+@bp.route('/notice/<int:notice_id>/')
+@login_required
+def notice(notice_id):
+    _notice = Notice.query.get_or_404(notice_id)
+    if g.user == _notice.user:
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
+    else:
+        _notice.voter.append(g.user)
+        db.session.commit()
+    return redirect(url_for('notice.detail', notice_id=notice_id))
+
+
+@bp.route('/anotice/<int:anotice_id>/')
+@login_required
+def anotice(anotice_id):
+    _anotice = Anotice.query.get_or_404(anotice_id)
+    if g.user == _anotice.user:
+        flash('본인이 작성한 글은 추천할 수 없습니다')
+    else:
+        _anotice.voter.append(g.user)
+        db.session.commit()
+        return '<script>alert("추천되었습니다.");location.href="/anotice/' + str(anotice_id) + '"</script>'
+    return redirect(url_for('notice.detail', notice_id=_anotice.notice.id))
