@@ -1,7 +1,10 @@
 @charset "utf-8";
 
-    .table_user{width:800px;}
+    .table_user{width:100%;}
     .td_id{width:5px;}
     .td_username{width:100px;}
     .td_email{width:200px;}
-    .td_delete{width:10px; text-align:center;}
+    .td_location{width:400px;}
+    .td_delete{width:50px; text-align:center;}
+
+
