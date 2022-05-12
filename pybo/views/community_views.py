@@ -123,3 +123,10 @@ def file_upload(file):
     filename = secure_filename(file.filename)
     file.save(UPLOAD_FOLDER + "\\" + filename)
     return filename
+
+
+def file_upload(file):
+    print("file_upload")
+    filename = secure_filename(file.filename)
+    file.save(UPLOAD_FOLDER + "\\" + filename)
+    return filename
