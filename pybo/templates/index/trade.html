@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% include "float.html" %}
 <title>biteup - 코인 커뮤니티</title>
 <div class="container my-3">
     <div id="contents" class="div-trade">
@@ -19,7 +20,7 @@
       "title_raw": "Overview",
       "symbols": [
         {
-          "s": "CRYPTOCAP:TOTAL"
+          "s": "UPBIT:BTCKRW"
         },
         {
           "s": "BITSTAMP:BTCUSD"
@@ -34,8 +35,9 @@
           "s": "BINANCE:LUNAUSD"
         },
         {
-          "s": "COINBASE:UNIUSD"
+          "s": "CRYPTOCAP:TOTAL"
         }
+
       ],
       "quick_link": {
         "title": "크립토커런시 더 보기",
@@ -207,12 +209,6 @@
                 <div class="list">
                     <table class="table">
                 <thead>
-                <tr class="text-center thead-dark">
-                    <th>No.</th>
-                    <th style="width:50%">제목</th>
-                    <th>작성자</th>
-                    <th>작성일시</th>
-                </tr>
                 </thead>
                 <tbody>
                 {% if community_list %}

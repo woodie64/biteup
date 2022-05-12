@@ -12,9 +12,8 @@ bp = Blueprint('contact', __name__, url_prefix='/contact')
 def qna():
     form = ContactForm()
     if request.method == 'POST' and form.validate_on_submit():
-        contact = Contact(email=form.email.data, username=form.username.data, subject=form.subject.data,
-                          message=form.message.data)
+        contact = Contact(email=form.email.data, username=form.username.data, subject=form.subject.data, message=form.message.data)
         db.session.add(contact)
         db.session.commit()
-        return redirect(url_for('index.index'))
+        return redirect(url_for('index.trade'))
     return render_template('contact/contact_form.html', form=form)

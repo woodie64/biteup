@@ -18,7 +18,7 @@ def login():
         return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'
 
 
-@bp.route('/list/', methods=('GET', 'POST'))
+@bp.route('/list', methods=('GET', 'POST'))
 @login_required
 def _list():
     print("/list")
@@ -26,7 +26,7 @@ def _list():
     return render_template('admin/admin_list.html', user_list=user_list)
 
 
-@bp.route('/user_delete/<int:user_id>', methods=('GET', 'POST'))
+@bp.route('/user_delete<int:user_id>', methods=('GET', 'POST'))
 def user_delete(user_id):
     if g.user.email == "admin@naver.com":
         if user_id == 1:
@@ -40,13 +40,13 @@ def user_delete(user_id):
         return '<script>alert("관리자가 아닙니다.");location.href="/"</script>'
 
 
-@bp.route('/main/', methods=('GET', 'POST'))
+@bp.route('/main', methods=('GET', 'POST'))
 @login_required
 def main():
     return render_template('admin/admin_form.html')
 
 
-@bp.route('/contact/', methods=('GET', 'POST'))
+@bp.route('/contact', methods=('GET', 'POST'))
 @login_required
 def contact():
     print("/contact")
