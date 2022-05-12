@@ -9,6 +9,8 @@ from .. import db
 from ..forms import CommunityForm, AnswerForm
 from ..models import Community, Answer, User
 
+path = os.getcwd()
+UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
 bp = Blueprint('community', __name__, url_prefix='/community')
 
 file_path = "templates/upload_file/"
@@ -52,17 +54,10 @@ def detail(community_id):
 def create():
     print("/create/")
     form = CommunityForm()
-    filename=None
+    filename = None
     if request.method == 'POST' and form.validate_on_submit():
-
-
-        if request.files['file'] :
-            f = request.files['file']
-            filename = secure_filename(f.filename)
-            path = os.getcwd()
-            UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
-            print(UPLOAD_FOLDER)
-            f.save(UPLOAD_FOLDER + "\\" + filename)
+        if request.files['file']:
+            filename = file_upload(request.files['file'])
 
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user, file=filename)
         db.session.add(community)
@@ -82,10 +77,14 @@ def modify(community_id):
     if request.method == 'POST':  # POST 요청
         form = CommunityForm()
         if form.validate_on_submit():
-            form.populate_obj(community)
+            if request.files['file']:
+                filename = file_upload(request.files['file'])
+                community.file = filename
+
+            community.content = form.content.data
+            community.subject = form.subject.data
             community.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
-            # return redirect(url_for('community.detail', community_id=community_id))
             return '<script>alert("수정되었습니다.");location.href="/community/detail/'+str(community_id)+'"</script>'
     else:  # GET 요청
         form = CommunityForm(obj=community)
@@ -117,3 +116,10 @@ def file_download(file_name):
         return '<script>alert("error");</script>'
 
     return send_file(file_name, mimetype='image/png', as_attachment=True)
+
+
+def file_upload(file):
+    print("file_upload")
+    filename = secure_filename(file.filename)
+    file.save(UPLOAD_FOLDER + "\\" + filename)
+    return filename
