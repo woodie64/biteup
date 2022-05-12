@@ -2,8 +2,10 @@
 <footer id="footer-wrap">
     <div id="footer" class="div-cont">
         <div class="l-logo">
-            <img rel="image" type="image" href="/static/logo.png">
+            <div style="float:left">
+            <img src="{{ url_for('static', filename='/logo.png') }}" alt="">
             <span class="blind">biteup</span>
+                </div>
         </div>
         <div class="l-info">
 

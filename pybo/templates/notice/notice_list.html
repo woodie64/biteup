@@ -22,8 +22,8 @@
                     <td>{{ notice_list.total - ((notice_list.page-1) * notice_list.per_page) - loop.index0 }}</td>
                     <td class="text-left">
                         <a href="{{ url_for('notice.detail', notice_id=notice.id) }}">{{ notice.subject }}</a>
-                        {% if notice.answer_set|length > 0 %}
-                        <span class="text-danger small ml-2">{{ notice.answer_set|length }}</span>
+                        {% if notice.anotice_set|length > 0 %}
+                        <span class="text-danger small ml-2">{{ notice.anotice_set|length }}</span>
                         {% endif %}
                     </td>
                     <td>{{ notice.user.username }}</td>  <!-- 글쓴이 추가 -->

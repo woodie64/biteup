@@ -51,6 +51,10 @@ class CommunityForm(FlaskForm):
     file = StringField('파일')
 
 
+class AnoticeForm(FlaskForm):
+    content = TextAreaField('내용', validators=[DataRequired('내용은 필수입력 항목입니다.')])
+
+
 class NoticeForm(FlaskForm):
     subject = StringField('제목', validators=[DataRequired('제목은 필수입력 항목입니다.')])
     content = TextAreaField('내용', validators=[DataRequired('내용은 필수입력 항목입니다.')])
