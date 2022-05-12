@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 from pybo.views.auth_views import login_required
-from flask import Blueprint, render_template, request, url_for, g, flash
+from flask import Blueprint, render_template, request, url_for, g, flash,send_file
 from werkzeug.utils import redirect
 from werkzeug.utils import secure_filename
 
@@ -52,24 +52,22 @@ def detail(community_id):
 def create():
     print("/create/")
     form = CommunityForm()
-
+    filename=None
     if request.method == 'POST' and form.validate_on_submit():
 
-        try:
+
+        if request.files['file'] :
             f = request.files['file']
-            filename=secure_filename(f.filename)
+            filename = secure_filename(f.filename)
             path = os.getcwd()
             UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
             print(UPLOAD_FOLDER)
-            f.save(UPLOAD_FOLDER+"\\"+filename)
-        except:
-            print("error")
-            return '<script>alert("에러 발생.");location.href="/community/create/"</script>'
-        # f.save(secure_filename(f.filename))
-        community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user)
+            f.save(UPLOAD_FOLDER + "\\" + filename)
+
+        community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user, file=filename)
         db.session.add(community)
         db.session.commit()
-        return '<script>alert("작성되었습니다..");location.href="/community/list"</script>'
+        return '<script>alert("작성되었습니다.");location.href="/community/list"</script>'
     return render_template('community/community_form.html', form=form)
 
 
@@ -80,7 +78,7 @@ def modify(community_id):
     community = Community.query.get_or_404(community_id)
     if g.user != community.user:
         # return redirect(url_for('community.detail', community_id=community_id))
-        return '<script>alert("수정권한이 없습니다");location.href="/community/detail/'+str(community_id)+'"</script>'
+        return '<script>alert("수정권한이 없습니다.");location.href="/community/detail/'+str(community_id)+'"</script>'
     if request.method == 'POST':  # POST 요청
         form = CommunityForm()
         if form.validate_on_submit():
@@ -104,3 +102,18 @@ def delete(community_id):
     db.session.commit()
     # return redirect(url_for('community._list'))
     return '<script>alert("삭제되었습니다.");location.href="/community/list"</script>'
+
+
+@bp.route('/file_download/<string:file_name>')
+@login_required
+def file_download(file_name):
+    print("file_download success")
+    try:
+        path = os.getcwd()
+        UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file\\')
+        file_name = UPLOAD_FOLDER+file_name
+        print(file_name)
+    except:
+        return '<script>alert("error");</script>'
+
+    return send_file(file_name, mimetype='image/png', as_attachment=True)

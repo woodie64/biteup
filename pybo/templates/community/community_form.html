@@ -5,7 +5,7 @@
     <div id="contents" class="div-board">
         <div class="container-warp list">
             <h5 class="my-3 border-bottom pb-2">자유게시판 등록</h5>
-            <form method="post" class="post-form my-3">
+            <form method="post" class="post-form my-3" enctype="multipart/form-data">
                 {{ form.csrf_token }}
                 <div class="form-group">
                     <label for="subject">제목</label>
