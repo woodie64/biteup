@@ -4,8 +4,8 @@ from flask import Blueprint, render_template, request, url_for, g, flash
 from werkzeug.utils import redirect
 
 from .. import db
-from ..forms import NoticeForm, AnswerForm
-from ..models import Notice, Answer, User
+from ..forms import NoticeForm, AnoticeForm
+from ..models import Notice, Anotice, User
 
 bp = Blueprint('notice', __name__, url_prefix='/notice')
 
@@ -20,8 +20,8 @@ def _list():
     notice_list = Notice.query.order_by(Notice.create_date.desc())
     if kw:
         search = '%%{}%%'.format(kw)
-        sub_query = db.session.query(Answer.notice_id, Answer.content, User.username) \
-            .join(User, Answer.user_id == User.id).subquery()
+        sub_query = db.session.query(AnoticeForm.notice_id, AnoticeForm.content, User.username) \
+            .join(User, AnoticeForm.user_id == User.id).subquery()
         notice_list = notice_list \
             .join(User) \
             .outerjoin(sub_query, sub_query.c.notice_id == Notice.id) \
@@ -40,7 +40,7 @@ def _list():
 
 @bp.route('/detail/<int:notice_id>/')
 def detail(notice_id):
-    form = AnswerForm()
+    form = AnoticeForm()
     notice = Notice.query.get_or_404(notice_id)
     return render_template('notice/notice_detail.html', notice=notice, form=form)
 
