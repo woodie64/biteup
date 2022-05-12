@@ -7,7 +7,7 @@ from pybo.forms import UserCreateForm, UserLoginForm, PasswordResetForm, Passwor
 from pybo.models import User
 import functools
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__, url_prefix='/')
 
 
 @bp.route('/agree/', methods=('GET', 'POST'))
