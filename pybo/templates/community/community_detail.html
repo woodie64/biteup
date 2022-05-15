@@ -17,9 +17,14 @@
                         <div class="card-body">
                             <div class="card-text" style="white-space: pre-line;">{{ community.content }}</div>
                         </div>
+                        <div>
+                            <a href="/community/file_download/{{ community.file }}">
+                            <div>{{ community.file }}</div>
+                        </a>
+                        </div>
                         {% for n in files %}
-                            <li>{{n}}</li>
-                            {% endfor %}
+                        <li>{{n}}</li>
+                        {% endfor %}
                     </div>
                     <div class="badge badge-light p-2 text-left">
                         <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
@@ -29,9 +34,6 @@
                            class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
                         <div class="mb-2">{{ community.user.username }}</div>
                         <div>{{ community.create_date|datetime }}</div>
-                        <a href="/community/file_download/{{ community.file }}">
-                        <div>{{ community.file }}</div>
-                        </a>
                         {% if g.user == community.user %}
                         <div class="my-3">
                             <a href="{{ url_for('community.modify', community_id=community.id) }}"
@@ -108,6 +110,7 @@ $(document).ready(function(){
         }
     });
 });
+
 
 </script>
 {% endblock %}

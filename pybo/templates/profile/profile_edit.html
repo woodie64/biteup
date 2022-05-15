@@ -1,34 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
+<title> MyPage - {{ g.user.username }}</title>
 <div id="container my-3">
-    <div id="contents" class="div-board">
-        <div class="container-warp list">
-            <h5 class="my-3 border-bottom pb-2">프로필 수정</h5>
+    <div id="contents" class="div-board profile">
+        <div class="container-wrap list">
+            <div class="header">
+                <h5>
+                    <strong>프로필 수정</strong>
+                </h5>
+            </div>
             <form method="post" class="post-form my-3">
                 {{ form.csrf_token }}
-                <div class="profile-group">
-                    <h3>E-mail: {{ g.user.email }}</h3>
+                <table class="profile-group">
+                    <tbody>
+                    <tr class="profile-edit">
+                        <td class="info">
+                            <h3>이메일</h3>
+                        </td>
+                        <td class="edit">
+                            <span>{{ g.user.email }}</span>
+                        </td>
+                    </tr>
+                    <tr class="profile-edit">
+                        <td class="info">
+                            <h3>이름</h3>
+                        </td>
+                        <td class="edit">
+                            <input id="username" name="username" type="text" value="{{ g.user.username }}">
+                        </td>
+                    </tr>
+                    <tr class="profile-edit">
+                        <td class="info">
+                            <h3>주소</h3>
+                        </td>
+                        <td class="edit location">
+                            <input id="location" name="location" type="text" value="{{ g.user.location }}">
+                        </td>
+                    </tr>
+                    <tr class="profile-edit">
+                        <td class="info">
+                            <h3>자기소개</h3>
+                        </td>
+                        <td class="edit">
+                            <textarea id="about_me" name="about_me" value="">{{ g.user.about_me }}</textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="profile-btn">
+                    <button class="btn btn-secondary m-1" type="submit" onclick="submit">프로필 수정</button>
+                    <a class="btn btn-secondary m-1" href="{{ url_for('profile.reset') }}">비밀번호 변경</a>
                 </div>
-
-                <div class="form-group">
-                    {{ form.username.label }}
-                    {{ form.username(class='form-control') }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.location.label }}
-                    {{ form.location(class='form-control') }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.about_me.label }}
-                    {{ form.about_me (class='form-control') }}
-                </div>
-
-                <div class="form-group">
-                    {{ form.submit(class='btn btn-primary') }}
-                </div>
-
             </form>
         </div>
     </div>

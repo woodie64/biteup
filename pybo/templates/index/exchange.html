@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-{% include "float.html" %}
 <title>biteup - 코인 커뮤니티</title>
 <div class="container my-3">
     <div id="contents" class="div-exchange">
@@ -18,7 +17,7 @@
   "symbol": "UPBIT:BTCKRW",
   "timezone": "Etc/UTC",
   "theme": "light",
-  "style": "9",
+  "style": "1",
   "locale": "kr",
   "toolbar_bg": "#f1f3f6",
   "enable_publishing": true,
@@ -39,7 +38,6 @@
   "container_id": "tradingview_1a86d"
 }
   );
-
 
                     </script>
                 </div>
@@ -63,37 +61,285 @@
 }
 
 
+
+
+
+
                     </script>
                 </div>
                 <!-- TradingView Widget END -->
             </div>
         </div>
         <div class="container-warp exchange-low">
-            <div class="exchange-low">
-                <!-- TradingView Widget BEGIN -->
+            <div class="exchange-low left">
+<!--                &lt;!&ndash; TradingView Widget BEGIN &ndash;&gt;-->
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
                     <script type="text/javascript"
                             src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                  {
+                  "width": "100%",
+                  "height": "100%",
+                  "defaultColumn": "overview",
+                  "screener_type": "crypto_mkt",
+                  "displayCurrency": "KRW",
+                  "colorTheme": "light",
+                  "locale": "kr"
+                }
+
+                    </script>
+                </div>
+            </div>
+            <div class="exchange-low right">
+<!--                &lt;!&ndash; TradingView Widget END &ndash;&gt;-->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript"
+                            src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
   {
+  "title": "가상화폐",
+  "title_raw": "Cryptocurrencies",
+  "title_link": "/markets/cryptocurrencies/prices-all/",
   "width": "100%",
   "height": "100%",
-  "defaultColumn": "overview",
-  "screener_type": "crypto_mkt",
-  "displayCurrency": "BTC",
-  "colorTheme": "light",
-  "locale": "kr"
+  "font-size": 15,
+  "locale": "kr",
+  "showSymbolLogo": true,
+  "symbolsGroups": [
+    {
+      "name": "원화",
+      "symbols": [
+        {
+          "name": "UPBIT:BTCKRW"
+        },
+        {
+          "name": "UPBIT:MANAKRW"
+        },
+        {
+          "name": "UPBIT:XRPKRW"
+        },
+        {
+          "name": "UPBIT:SANDKRW"
+        },
+        {
+          "name": "UPBIT:ETHKRW"
+        },
+        {
+          "name": "UPBIT:PLAKRW"
+        },
+        {
+          "name": "UPBIT:ZILKRW"
+        },
+        {
+          "name": "UPBIT:AXSKRW"
+        },
+        {
+          "name": "UPBIT:BORAKRW"
+        },
+        {
+          "name": "UPBIT:ADAKRW"
+        },
+        {
+          "name": "UPBIT:NEARKRW"
+        },
+        {
+          "name": "UPBIT:KNCKRW"
+        },
+        {
+          "name": "UPBIT:SOLKRW"
+        },
+        {
+          "name": "UPBIT:FLOWKRW"
+        },
+        {
+          "name": "UPBIT:WAVESKRW"
+        },
+        {
+          "name": "UPBIT:DOGEKRW"
+        },
+        {
+          "name": "UPBIT:TRXKRW"
+        },
+        {
+          "name": "UPBIT:ALGOKRW"
+        },
+        {
+          "name": "UPBIT:HUMKRW"
+        },
+        {
+          "name": "UPBIT:STEEMKRW"
+        },
+        {
+          "name": "UPBIT:WEMIXKRW"
+        },
+        {
+          "name": "UPBIT:METAKRW"
+        },
+        {
+          "name": "UPBIT:KAVAKRW"
+        },
+        {
+          "name": "UPBIT:ETCKRW"
+        },
+        {
+          "name": "UPBIT:EOSKRW"
+        },
+        {
+          "name": "UPBIT:HUNTKRW"
+        },
+        {
+          "name": "UPBIT:MTLKRW"
+        },
+        {
+          "name": "UPBIT:GMTKRW"
+        },
+        {
+          "name": "UPBIT:MEDKRW"
+        },
+        {
+          "name": "UPBIT:ATOMKRW"
+        },
+        {
+          "name": "UPBIT:LINKKRW"
+        },
+        {
+          "name": "UPBIT:ICXKRW"
+        },
+        {
+          "name": "UPBIT:MBLKRW"
+        },
+        {
+          "name": "UPBIT:MATICKRW"
+        },
+        {
+          "name": "UPBIT:AERGOKRW"
+        },
+        {
+          "name": "UPBIT:STXKRW"
+        },
+        {
+          "name": "UPBIT:FCT2KRW"
+        },
+        {
+          "name": "UPBIT:STRKKRW"
+        },
+        {
+          "name": "UPBIT:SXPKRW"
+        },
+        {
+          "name": "UPBIT:DOTKRW"
+        },
+        {
+          "name": "UPBIT:POWRKRW"
+        },
+        {
+          "name": "UPBIT:ZRXKRW"
+        },
+        {
+          "name": "UPBIT:BATKRW"
+        },
+        {
+          "name": "UPBIT:BCHKRW"
+        },
+        {
+          "name": "UPBIT:PUNDIXKRW"
+        },
+        {
+          "name": "UPBIT:HIVEKRW"
+        },
+        {
+          "name": "UPBIT:TTKRW"
+        },
+        {
+          "name": "UPBIT:SRMKRW"
+        },
+        {
+          "name": "UPBIT:JSTKRW"
+        }
+      ]
+    },
+    {
+      "name": "USDT",
+      "symbols": [
+        {
+          "name": "BINANCE:BTCUSDT"
+        },
+        {
+          "name": "BINANCE:ETHUSDT"
+        },
+        {
+          "name": "BINANCE:SOLUSDT"
+        },
+        {
+          "name": "BINANCE:MANAUSDT"
+        },
+        {
+          "name": "BINANCE:APEUSDT"
+        },
+        {
+          "name": "BINANCE:ADAUSDT"
+        },
+        {
+          "name": "BINANCE:GMTUSDT"
+        },
+        {
+          "name": "BINANCE:DOTUSDT"
+        },
+        {
+          "name": "BINANCE:AVAXUSDT"
+        },
+        {
+          "name": "BINANCE:SHIBUSDT"
+        },
+        {
+          "name": "BINANCE:BNBUSDT"
+        },
+        {
+          "name": "BINANCE:NEARUSDT"
+        },
+        {
+          "name": "BINANCE:XRPUSDT"
+        },
+        {
+          "name": "BINANCE:GALAUSDT"
+        },
+        {
+          "name": "BINANCE:FTMUSDT"
+        },
+        {
+          "name": "BINANCE:DOGEUSDT"
+        },
+        {
+          "name": "BINANCE:SANDUSDT"
+        },
+        {
+          "name": "BINANCE:MATICUSDT"
+        },
+        {
+          "name": "BINANCE:TRXUSDT"
+        },
+        {
+          "name": "BINANCE:ANCUSDT"
+        },
+        {
+          "name": "BINANCE:GALUSDT"
+        },
+        {
+          "name": "BINANCE:AXSUSDT"
+        }
+      ]
+    }
+  ],
+  "colorTheme": "light"
 }
+
+
 
 
                     </script>
                 </div>
                 <!-- TradingView Widget END -->
             </div>
-        </div>
-        <div class="container-warp exchange">
-
-
         </div>
     </div>
 </div>

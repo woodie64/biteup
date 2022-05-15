@@ -12,8 +12,8 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 @bp.route('/', methods=('POST', 'GET'))
 @login_required
 def login():
-    if g.user.email == "admin@naver.com":
-        return '<script>alert("관리자 입니다.");location.href="/admin/main/"</script>'
+    if g.user.email == "admin@biteup.com":
+        return '<script>alert("관리자 입니다.");location.href="/admin/main"</script>'
     else:
         return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'
 
@@ -28,7 +28,7 @@ def _list():
 
 @bp.route('/user_delete<int:user_id>', methods=('GET', 'POST'))
 def user_delete(user_id):
-    if g.user.email == "admin@naver.com":
+    if g.user.email == "admin@biteup.com":
         if user_id == 1:
             return '<script>alert("관리자 계정은 삭제가 불가능합니다.");location.href="/admin/list"</script>'
         else:

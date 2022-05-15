@@ -1,8 +1,7 @@
 import os
 from datetime import datetime
 from pybo.views.auth_views import login_required
-from flask import Blueprint, render_template, request, url_for, g, flash,send_file
-from werkzeug.utils import redirect
+from flask import Blueprint, render_template, request, url_for, g, flash, send_file
 from werkzeug.utils import secure_filename
 
 from .. import db
@@ -14,7 +13,7 @@ UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
 bp = Blueprint('community', __name__, url_prefix='/community')
 
 file_path = "templates/upload_file/"
-@bp.route('/list/')
+@bp.route('/list')
 def _list():
     # 입력 파라미터
     page = request.args.get('page', type=int, default=1)
@@ -52,7 +51,7 @@ def detail(community_id):
 @bp.route('/create/', methods=('GET', 'POST'))
 @login_required
 def create():
-    print("/create/")
+    print("/create")
     form = CommunityForm()
     filename = None
     if request.method == 'POST' and form.validate_on_submit():
@@ -116,13 +115,6 @@ def file_download(file_name):
         return '<script>alert("error");</script>'
 
     return send_file(file_name, mimetype='image/png', as_attachment=True)
-
-
-def file_upload(file):
-    print("file_upload")
-    filename = secure_filename(file.filename)
-    file.save(UPLOAD_FOLDER + "\\" + filename)
-    return filename
 
 
 def file_upload(file):

@@ -41,7 +41,7 @@
         {% if g.user %}
         <div class="navbar-out">
             <div class="nav-box ">
-                <a class="nav-name" href="{{ url_for('profile.profile') }}">{{ g.user.username }}님 방가! </a>
+                <a class="nav-name" href="{{ url_for('profile.edit') }}">{{ g.user.username }}님 방가! </a>
             </div>
             <div class="nav-box ">
                 <a class="nav-logout" href="{{ url_for('auth.logout') }}">LOGOUT</a>

@@ -1,17 +1,42 @@
 <!--footer-->
 <footer id="footer-wrap">
-    <div id="footer" class="div-cont">
+    <div id="footer" class="div-foot">
         <div class="l-logo">
-            <div style="float:left">
-            <img src="{{ url_for('static', filename='/logo.png') }}" alt="">
-            <span class="blind">biteup</span>
-                </div>
+            <h2>
+                <span class="blind">biteup</span>
+            </h2>
         </div>
         <div class="l-info">
-
+            <div class="l-link">
+                <ul class="l-item">
+                    <li class="item">
+                        <a class="it" href="/paper/provision">이용약관</a>
+                    </li>
+                    <li class="item">
+                        <a class="it" href="/paper/privacy">개인정보취급방침</a>
+                    </li>
+                    <li class="item">
+                        <a class="it" href="{{ url_for('contact.qna') }}">문의하기</a>
+                    </li>
+                    <li class="item">
+                        <a class="it" href="{{ url_for('notice._list') }}">공지사항</a>
+                    </li>
+                </ul>
+                <ul class="l-txt">
+                    <li>
+                        <span>주식회사 바이트업</span>
+                    </li>
+                    <li>
+                        <span>대표자: Web8</span>
+                    </li>
+                    <li>
+                        <span>메일: admin@biteup.com</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div class="copyright">
-        <span>© Copyright 2022 biteup</span>
+        <div class="copyright">
+            <span>Copyright © biteup. All rights reserved.</span>
+        </div>
     </div>
 </footer>

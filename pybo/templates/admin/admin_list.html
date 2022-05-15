@@ -15,6 +15,7 @@
                         <th>이름</th>
                         <th>이메일</th>
                         <th>주소</th>
+                        <th>자기소개</th>
                         <th class="td_delete">삭제</th>
                     </tr>
                     </thead>
@@ -25,6 +26,7 @@
                         <td class="td_username">{{ user.username }}</td>
                         <td class="td_email">{{ user.email }}</td>
                         <td class="td_location">{{ user.location }}</td>
+                        <td class="td_about_me">{{ user.about_me }}</td>
                         <td class="td_delete">
                             <a href="{{ url_for('admin.user_delete', user_id=user.id) }}" class="delete btn btn-sm btn-outline-secondary">삭제</a>
                         </td>
