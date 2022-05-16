@@ -25,10 +25,10 @@ def agree_re():
 
 @bp.route('/signup', methods=('GET', 'POST'))
 def signup():
-    session.clear()
     form = UserCreateForm()
     if request.method == 'POST' and form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = User.query.filter_by(email=form.email.data,
+                                    username=form.username.data).first()
         if not user:
             user = User(email=form.email.data,
                         password=generate_password_hash(form.password1.data),
@@ -36,7 +36,6 @@ def signup():
                         passwd_answer=form.passwd_answer.data)
             db.session.add(user)
             db.session.commit()
-            # return redirect(url_for('main.index'))
             return '<script>alert("계정이 생성되었습니다.");location.href="/"</script>'
         else:
             return '<script>alert("이미 존재하는 계정입니다.");location.href="/signup"</script>'

@@ -9,7 +9,7 @@ from ..forms import NoticeForm, AnoticeForm
 from ..models import Notice, Anotice, User
 
 path = os.getcwd()
-UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
+UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file\\notice')
 bp = Blueprint('notice', __name__, url_prefix='/notice')
 
 file_path = "templates/upload_file/"
@@ -114,7 +114,7 @@ def file_download(file_name):
     print("file_download success")
     try:
         path = os.getcwd()
-        UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file\\')
+        UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file\\\\notice')
         file_name = UPLOAD_FOLDER + file_name
         print(file_name)
     except:

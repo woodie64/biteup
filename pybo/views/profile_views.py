@@ -27,7 +27,7 @@ def edit():
             return '<script>alert("프로필을 수정하였습니다.");location.href=/profile/</script>'
         except:
             print("profile edit error")
-            return '<script>alert("error");location.href=/profile/</script>'
+            return '<script>alert("이미 존재하는 이름입니다.");location.href=/profile/</script>'
     return render_template('profile/profile_edit.html', form=form)
 
 
