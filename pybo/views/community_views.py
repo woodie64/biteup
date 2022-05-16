@@ -64,7 +64,7 @@ def create():
                               user=g.user, file=filename)
         db.session.add(community)
         db.session.commit()
-        return '<script>alert("작성되었습니다.");location.href="/community/list"</script>'
+        return '<script>alert("작성 되었습니다.");location.href="/community/list"</script>'
     return render_template('community/community_form.html', form=form)
 
 

@@ -65,7 +65,7 @@ def create():
                                 user=g.user, file=filename)
             db.session.add(notice)
             db.session.commit()
-            return '<script>alert("작성되었습니다.");location.href="/notice/list"</script>'
+            return '<script>alert("작성 되었습니다.");location.href="/notice/list"</script>'
         return render_template('notice/notice_form.html', form=form)
     else:
         return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'

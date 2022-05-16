@@ -82,6 +82,7 @@ def login_required(view):
         if g.user is None:
             return redirect(url_for('auth.login'))
         return view(**kwargs)
+
     return wrapped_view
 
 
@@ -114,6 +115,13 @@ def password_reset_confirm():
         # return redirect(url_for('auth.login'))
         return '<script>alert("비밀번호가 변경되었습니다.");location.href="/login"</script>'
     return render_template('auth/password_reset_confirm.html', form=form)
+
+
+@bp.route('/delete')
+@login_required
+def delete():
+
+    return render_template('auth/withdrawal.html')
 
 
 @bp.route('/paper/provision')

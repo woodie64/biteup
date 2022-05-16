@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<title>회원가입 - biteup</title>
+<div id="container my-3">
+    <div id="contents" class="div-cont delete">
+        <div class="member-wrap withdrawal">
+            <form class="sub_form" method="post" autocomplete="off">
+
+                <h3>회원탈퇴</h3>
+                <div class="entry">
+                    <table class="delete-group">
+                        <tbody>
+                        <tr class="delete-sub">
+                            <td class="info">
+                                <h3>탈퇴 시 유의사항</h3>
+                            </td>
+                            <td class="sub">
+                                <br>
+                                <h4>이메일 재사용 및 복구 불가 안내</h4>
+                                <p>회원탈퇴 진행 시 본인의 <strong>이메일 재사용이나 복구가 불가능합니다.</strong></p>
+                                <br><br>
+                                <h4>게시판형 서비스에 등록한 게시글 삭제 안내</h4>
+                                <p>회원탈퇴 진행 시 회원정보와 게시글들은 즉시 삭제되며, <strong>복구가 불가능하므로 탈퇴 전 미리 백업을 하시기 바랍니다.</strong></p>
+                                <br><br><br>
+                                <h4 style="text-align:center">위 내용을 확인 하셨으면, 동의를 눌러주세요.</h4>
+                                <div style="text-align:center">
+                                    <input type="checkbox" id="agree" class="require" name="agreePrivacy" value="n" style="height:26px">
+                                    <br>
+                                    <small style="font-weight:700;">동의</small>
+                                </div>
+                                <br>
+                           </td>
+                        </tr>
+                        <tr class="delete-sub">
+                            <td class="info">
+                                <h3>이메일</h3>
+                            </td>
+                            <td class="sub">
+                                <span>{{ g.user.email }}</span>
+                            </td>
+                        </tr>
+                        <tr class="delete-sub">
+                            <td class="info">
+                                <h3>비밀번호</h3>
+                            </td>
+                            <td class="sub">
+                                <input type="password" name="password" id="password" value="" required>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn-submit">탈퇴하기</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
