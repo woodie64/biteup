@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<title>{{ notice.subject }}</title>
 <div id="container my-3">
     <div id="contents" class="div-board">
         <div class="container-warp list">
@@ -16,6 +17,14 @@
                         <div class="card-body">
                             <div class="card-text" style="white-space: pre-line;">{{ notice.content }}</div>
                         </div>
+                        <div>
+                            <a href="/notice/file_download/{{ notice.file }}">
+                            <div>{{ notice.file }}</div>
+                        </a>
+                        </div>
+                        {% for n in files %}
+                        <li>{{n}}</li>
+                        {% endfor %}
                     </div>
                     <div class="badge badge-light p-2 text-left">
                         <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{

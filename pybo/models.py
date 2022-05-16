@@ -46,7 +46,8 @@ class Notice(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('notice_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
-    # voter = db.relationship('User', secondary=community_voter, backref=db.backref('community_voter_set'))
+    voter = db.relationship('User', secondary=notice_voter, backref=db.backref('notice_voter_set'))
+    file = db.Column(db.String(50))
 
 
 class Answer(db.Model):

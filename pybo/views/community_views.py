@@ -13,6 +13,8 @@ UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file')
 bp = Blueprint('community', __name__, url_prefix='/community')
 
 file_path = "templates/upload_file/"
+
+
 @bp.route('/list')
 def _list():
     # 입력 파라미터
@@ -48,7 +50,7 @@ def detail(community_id):
     return render_template('community/community_detail.html', community=community, form=form)
 
 
-@bp.route('/create/', methods=('GET', 'POST'))
+@bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
     print("/create")
@@ -58,7 +60,8 @@ def create():
         if request.files['file']:
             filename = file_upload(request.files['file'])
 
-        community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(), user=g.user, file=filename)
+        community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(),
+                              user=g.user, file=filename)
         db.session.add(community)
         db.session.commit()
         return '<script>alert("작성되었습니다.");location.href="/community/list"</script>'
@@ -72,7 +75,7 @@ def modify(community_id):
     community = Community.query.get_or_404(community_id)
     if g.user != community.user:
         # return redirect(url_for('community.detail', community_id=community_id))
-        return '<script>alert("수정권한이 없습니다.");location.href="/community/detail/'+str(community_id)+'"</script>'
+        return '<script>alert("수정권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     if request.method == 'POST':  # POST 요청
         form = CommunityForm()
         if form.validate_on_submit():
@@ -84,7 +87,7 @@ def modify(community_id):
             community.subject = form.subject.data
             community.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
-            return '<script>alert("수정되었습니다.");location.href="/community/detail/'+str(community_id)+'"</script>'
+            return '<script>alert("수정되었습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     else:  # GET 요청
         form = CommunityForm(obj=community)
     return render_template('community/community_form.html', form=form)
@@ -109,11 +112,10 @@ def file_download(file_name):
     try:
         path = os.getcwd()
         UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file\\')
-        file_name = UPLOAD_FOLDER+file_name
+        file_name = UPLOAD_FOLDER + file_name
         print(file_name)
     except:
         return '<script>alert("error");</script>'
-
     return send_file(file_name, mimetype='image/png', as_attachment=True)
 
 
