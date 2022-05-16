@@ -134,7 +134,7 @@
   .l-item .item:before{content: "";display: inline-block;margin: 0 8px -2px;width: 1px;height: 13px;background: #e0e0e0;}
   .l-item .item:first-child:before{display: none;}
   .l-item .item:nth-child(2){font-weight:bold;}
-  .l-txt li{float: center;font-size: 13px;}
+  .l-txt li{font-size: 13px;}
 
   .submit{width:100%;}
   #footer-wrap{display: block;position: relative;background-color:white;border-top: 1px solid #e6e6e6;min-width:1700px;max-width:none;}

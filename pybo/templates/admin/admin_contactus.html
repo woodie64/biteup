@@ -12,23 +12,25 @@
                     <thead>
                     <tr>
                         <th class="td_id">No.</th>
-                        <th>이름</th>
                         <th>이메일</th>
+                        <th>이름</th>
                         <th>제목</th>
                         <th>내용</th>
+                        <th>문의날짜</th>
                         <th class="td_delete">삭제</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for contact in contact_list %}
                     <tr>
-                        <td class="td_id">{{ contact.user.id }}</td>
-                        <td class="td_username">{{ contact.username }}</td>
+                        <td class="td_id">{{ contact.id }}</td>
                         <td class="td_email">{{ contact.email }}</td>
-                        <td class="td_location">{{ contact.subject }}</td>
+                        <td class="td_username">{{ contact.username }}</td>
+                        <td class="td_subject">{{ contact.subject }}</td>
                         <td class="td_message">{{ contact.message }}</td>
+                        <td class="td_datetime">{{ contact.create_date|datetime }}</td>
                         <td class="td_delete">
-                            <a href="{{ url_for('admin.contact_delete', user_id=user.id) }}" class="delete btn btn-sm btn-outline-secondary">삭제</a>
+                            <a href="{{ url_for('admin.contact_delete', contact_id=contact.id) }}" class="delete btn btn-sm btn-outline-secondary">삭제</a>
                         </td>
                     </tr>
                     {% endfor %}

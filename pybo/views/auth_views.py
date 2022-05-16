@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Blueprint, url_for, render_template, flash, request, session, g
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
@@ -27,13 +28,13 @@ def agree_re():
 def signup():
     form = UserCreateForm()
     if request.method == 'POST' and form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data,
-                                    username=form.username.data).first()
+        user = User.query.filter_by(email=form.email.data).first()
         if not user:
             user = User(email=form.email.data,
                         password=generate_password_hash(form.password1.data),
                         username=form.username.data,
-                        passwd_answer=form.passwd_answer.data)
+                        passwd_answer=form.passwd_answer.data,
+                        create_date=datetime.now())
             db.session.add(user)
             db.session.commit()
             return '<script>alert("계정이 생성되었습니다.");location.href="/"</script>'

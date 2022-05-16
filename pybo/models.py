@@ -82,6 +82,7 @@ class User(db.Model):
     passwd_answer = db.Column(db.String(200), unique=True, nullable=False)
     location = db.Column(db.String(64), nullable=False)
     about_me = db.Column(db.Text(), nullable=False)
+    create_date = db.Column(db.DateTime(), nullable=False)
 
 
 class Contact(db.Model):
@@ -90,3 +91,4 @@ class Contact(db.Model):
     username = db.Column(db.String(150), unique=True, nullable=False)
     subject = db.Column(db.String(200), nullable=False)
     message = db.Column(db.Text(), nullable=False)
+    create_date = db.Column(db.DateTime(), nullable=False)

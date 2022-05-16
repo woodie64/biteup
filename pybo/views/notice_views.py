@@ -30,9 +30,9 @@ def _list():
         notice_list = notice_list \
             .join(User) \
             .outerjoin(sub_query, sub_query.c.notice_id == Notice.id) \
-            .filter(Notice.subject.ilike(search) |  # 질문제목
-                    Notice.content.ilike(search) |  # 질문내용
-                    User.username.ilike(search) |  # 질문작성자
+            .filter(Notice.subject.ilike(search) |  # 제목
+                    Notice.content.ilike(search) |  # 내용
+                    User.username.ilike(search) |  # 작성자
                     sub_query.c.content.ilike(search) |  # 답변내용
                     sub_query.c.username.ilike(search)  # 답변작성자
                     ) \
@@ -53,7 +53,7 @@ def detail(notice_id):
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
-    if g.user.email == "admin@biteup.com":
+    if g.user.email == "biteup@biteup.com":
         print("/create")
         form = NoticeForm()
         filename = None

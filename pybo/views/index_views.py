@@ -1,4 +1,10 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, url_for, g, flash, send_file
+from werkzeug.utils import secure_filename
+
+from .. import db
+from ..forms import CommunityForm, AnswerForm
+from ..models import Community, Answer, User
+
 bp = Blueprint('index', __name__, url_prefix='/')
 
 
@@ -10,8 +16,7 @@ def trade():
 @bp.route('/')
 def _list():
     community_list = Community.query.order_by(Community.create_date.desc())
-    community_list = community_list.paginate(page, per_page=10)
-    return render_template('index/trade.html', community_list=community_list, page=page)
+    return render_template('index/trade.html', community_list=community_list)
 
 
 @bp.route('/exchange')
