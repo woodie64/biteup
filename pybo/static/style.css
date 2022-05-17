@@ -6,8 +6,8 @@
   form{margin: 0 auto;}
   a:link{text-decoration: none;}
 
-  .navbar-nav{padding: 0 130px;}
-  .navbar-light .navbar-nav .nav-link{padding-right:15px;padding-left:15px;font-weight:bold;font-size:18px;width:100%;}
+  .navbar-nav{padding: 0 55px;}
+  .navbar-light .navbar-nav .nav-link{padding: 0 15px;font-weight:bold;font-size:18px;width:100%;}
 
   .member-desktop{max-width: 250px;right: 70px;padding-right: 0;top: 20px;}
   .member-desktop.navbar-lo{position: relative;float: left;display: inline-block;vertical-align: top;}
@@ -17,8 +17,8 @@
   .nav-logout{display: block;color: #111;line-height: 29px;height: 28px;border: 1px solid #999;font-size: 13px;font-weight:700;min-width: 80px;text-transform: uppercase;text-align:center;}
   .nav-name{display: block;color: #111;line-height: 29px;height: 28px;font-size: 15px;font-weight:700;min-width: 80px;text-align:center;padding-right: 5px;}
   .nav-box{float: left;}
-  .collapse.navbar-collapse.flex-grow-0{height:70px;}
-  .navbar.border-bottom, .tradingview-widget-container.float{min-width:1700px;}
+  .collapse.navbar-collapse.flex-grow-0{height:75px;}
+  .navbar.border-bottom, .tradingview-widget-container.float{min-width:100%;}
 
 
   .member-wrap{background-color:#fff;border-radius: 30px;}
@@ -84,16 +84,21 @@
   .profile-edit .edit.location input{width: 400px;}
   .profile-edit textarea{width: 400px;height:100%;border: solid 1px #bbb;line-height: 35px;font-size: 14px;padding-left: 10px;letter-spacing: 0.03em;box-sizing: border-box;font-family: arial, '돋움', dotum;}
   .profile-btn{text-align:center;margin-top:50px;}
-  .container.my-3{width:1700px;}
+  .container.my-3{width:100%;}
   .div-board.profile{padding:50px 120px 200px 120px;}
   .container-wrap.list{position: relative;box-sizing: border-box;padding: 60px 100px;background-color: #fff;border-radius: 30px;}
 
-  .div-trade{margin: 0 auto;box-sizing: border-box;padding: 20px 0px 60px 0px;position: relative;display:flex;}
-  .div-trade .container-wrap.main{margin: 0 auto;min-width:auto;max-width:1700px;}
-  .trade-top.left{float:left;display:flex;}
-  .trade-top.right{float:right;display:flex;}
-  .trade-middle{width:1200px;margin: 0 auto;box-sizing: border-box;border-radius: 15px;padding: 20px 0px 100px 0px;position: relative;display:flex;background:#fff;}
-  .trade-low{width:1200px;margin: 0 auto;box-sizing: border-box;padding: 20px 0px 100px 0px;position: relative;display:flex;}
+  .div-trade{height:550px;margin: 0 auto;box-sizing: border-box;position: relative;display:flex;background: url('https://flybit.com/static/media/main_visual.93102a23.png') no-repeat left center;margin-top:20px;}
+  .div-trade .container-wrap.main{margin: 0 auto;min-width:1000px;max-width:1700px;}
+  .trade-top.left{display:inline-block;width:650px;}
+  .trade-top.right{display:inline-block;width:350px}
+  .trade-middle-up{width:100%;height:300px;margin: 0 auto;border-radius: 15px;padding: 100px 0px;position: relative;display:flex;background:#fff;margin-top:100px;}
+  .trade-middle{width:100%;height:600px;background-color:rgb(0, 5, 40);}
+  .trade-middle h2{color:white;font-weight: bold;text-align: center;}
+  .trade-middle-center{width: 900px;height: 400px;margin: 0 auto;padding:65px 0;}
+  .trade-middle-down{width:100%;height:100px;margin: 0 auto;border-radius: 15px;padding: 150px 0px;position: relative;display:flex;background:#fff;}
+  .trade-low{width:100%;margin: 0 auto;padding: 15px 0px;position: relative;display:flex;background-color:#f2f2f2;margin-top:100px;}
+  .trade-low td{width: 1200px;text-align: center;}
   .container-wrap.main-list{width:800px;margin: 0 auto;}
   .form-group .form-control{margin-top:50px;}
 
@@ -152,19 +157,20 @@
   .l-txt li{font-size: 13px;}
 
   .submit{width:100%;}
-  #footer-wrap{display: block;position: relative;background-color:white;border-top: 1px solid #e6e6e6;min-width:1700px;max-width:none;}
+  #footer-wrap{display: block;position: relative;background-color:white;border-top: 1px solid #e6e6e6;width:100%;}
   #footer{padding:20px 10px;position: relative;}
   .div-foot{position: relative;text-align: left;margin: 0 auto 0 auto;max-width: 1060px;box-sizing: border-box;padding: 0 20px;}
   .copyright{text-align:center; font-size:12px}
+  .container-wrap.foot{width: 848px;margin: 0 auto;}
 
 
  .div-exchange{position: relative;padding:20px 0px 120px 0px;}
- .container-warp.exchange-high{margin: 0 auto;min-width:1700px;max-width:none;height:600px;margin-top:30px;}
- .exchange-left{width:1400px;height:600px;float:left;}
- .exchange-right{width:290px;height:600px;float:right;}
- .container-warp.exchange-low{margin: 0 auto;min-width:1700px;max-width:none;height:600px;margin-top:10px;}
- .exchange-low.left{width:920px;height:600px;float:left;}
- .exchange-low.right{width:770px;height:600px;float:right;}
+ .container-warp.exchange-high{margin: 0 auto;min-width:1700px;max-width:none;height:600px;margin-top:30px;text-align:center;}
+ .exchange-left{width:1400px;height:600px;display:inline-block;}
+ .exchange-right{width:290px;height:600px;display:inline-block;}
+ .container-warp.exchange-low{margin: 0 auto;min-width:1700px;max-width:none;height:600px;margin-top:10px;text-align:center;}
+ .exchange-low.left{width:920px;height:600px;display:inline-block;}
+ .exchange-low.right{width:770px;height:600px;display:inline-block;}
 
 
  .ck.ck-editor {max-width: 1200px;}
