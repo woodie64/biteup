@@ -17,16 +17,14 @@
                         <div class="card-body">
                             <div class="card-text" style="white-space: pre-line;">{{ community.content }}</div>
                         </div>
-                        <div>
-                            <a href="/community/file_download/{{ community.file }}">
-                            <div>{{ community.file }}</div>
-                        </a>
-                        </div>
                         {% for n in files %}
                         <li>{{n}}</li>
                         {% endfor %}
                     </div>
                     <div class="badge badge-light p-2 text-left">
+                        <div>
+                            <span>조회수</span>
+                        </div>
                         <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
                             community.voter|length }}
                         </div>
@@ -42,6 +40,11 @@
                                data-uri="{{ url_for('community.delete', community_id=community.id) }}">삭제</a>
                         </div>
                         {% endif %}
+                        <div style="text-align:center;">
+                            <a href="/community/file_download/{{ community.file }}">
+                            <div>{{ community.file }}</div>
+                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,6 +54,8 @@
         <div class="row my-3">
             <div class="col-11">  <!-- 답변영역 -->
                 <!-- 기존내용 -->
+
+
                 <div class="card my-3">
                     <div class="card-body">
                         <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
@@ -79,6 +84,9 @@
         </div>
         {% endfor %}
         <form action="{{ url_for('answer.create', community_id=community.id) }}" method="post" class="my-3">
+
+
+
             {{ form.csrf_token }}
             <!-- 오류표시 Start -->
             {% for field, errors in form.errors.items() %}

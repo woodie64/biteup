@@ -12,6 +12,8 @@
                     <th style="width:50%">제목</th>
                     <th>작성자</th>
                     <th>작성일시</th>
+                    <th>추천</th>
+                    <th>조회</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,13 +22,17 @@
                 <tr class="text-center">
                     <td>{{ community_list.total - ((community_list.page-1) * community_list.per_page) - loop.index0 }}</td>
                     <td class="text-left">
-                        <a href="{{ url_for('community.detail', community_id=community.id) }}">{{ community.subject}}</a>
-                        {% if community.answer_set|length > 0 %}
-                        <span class="text-danger small ml-2">{{ community.answer_set|length }}</span>
+                        <a href="{{ url_for('community.detail', community_id=community.id) }}">
+                            {{ community.subject}}
+                            {% if community.answer_set|length > 0 %}
+                            <em>[{{ community.answer_set|length }}]</em>
+                        </a>
                         {% endif %}
                     </td>
                     <td>{{ community.user.username }}</td>  <!-- 글쓴이 추가 -->
                     <td>{{ community.create_date|datetime }}</td>
+                    <td>{{ community.voter|length }}</td>
+                    <td></td>
                 </tr>
                 {% endfor %}
                 {% else %}

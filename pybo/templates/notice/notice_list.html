@@ -12,6 +12,8 @@
                     <th style="width:50%">제목</th>
                     <th>작성자</th>
                     <th>작성일시</th>
+                    <th>추천</th>
+                    <th>조회</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -20,13 +22,17 @@
                 <tr class="text-center">
                     <td>{{ notice_list.total - ((notice_list.page-1) * notice_list.per_page) - loop.index0 }}</td>
                     <td class="text-left">
-                        <a href="{{ url_for('notice.detail', notice_id=notice.id) }}">{{ notice.subject }}</a>
-                        {% if notice.anotice_set|length > 0 %}
-                        <span class="text-danger small ml-2">{{ notice.anotice_set|length }}</span>
+                        <a href="{{ url_for('notice.detail', notice_id=notice.id) }}">
+                            {{ notice.subject }}
+                            {% if notice.anotice_set|length > 0 %}
+                            <em>[{{ notice.anotice_set|length }}]</em>
+                        </a>
                         {% endif %}
                     </td>
                     <td>{{ notice.user.username }}</td>  <!-- 글쓴이 추가 -->
                     <td>{{ notice.create_date|datetime }}</td>
+                    <td>{{ notice.voter|length }}</td>
+                    <td></td>
                 </tr>
                 {% endfor %}
                 {% else %}
@@ -79,11 +85,11 @@
             </ul>
             <!-- 페이징처리 끝 -->
             <div class="col-4 input-group">
-                    <input type="text" class="form-control kw" value="{{ kw or '' }}">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
-                    </div>
+                <input type="text" class="form-control kw" value="{{ kw or '' }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
                 </div>
+            </div>
             <a href="{{ url_for('notice.create') }}" class="btn btn-primary">글쓰기</a>
         </div>
     </div>
@@ -106,6 +112,7 @@ $(document).ready(function(){
         $("#searchForm").submit();
     });
 });
+
 
 </script>
 {% endblock %}

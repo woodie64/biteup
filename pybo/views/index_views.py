@@ -22,3 +22,8 @@ def _list():
 @bp.route('/exchange')
 def exchange():
     return render_template('index/exchange.html')
+
+
+@bp.route('/testpage')
+def testpage():
+    return render_template('index/testpage.html')

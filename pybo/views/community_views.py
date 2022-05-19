@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from pybo.views.auth_views import login_required
 from flask import Blueprint, render_template, request, url_for, g, flash, send_file
 from werkzeug.utils import secure_filename
@@ -56,12 +56,14 @@ def create():
     print("/create")
     form = CommunityForm()
     filename = None
+
     if request.method == 'POST' and form.validate_on_submit():
         if request.files['file']:
             filename = file_upload(request.files['file'])
 
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(),
                               user=g.user, file=filename)
+
         db.session.add(community)
         db.session.commit()
         return '<script>alert("작성 되었습니다.");location.href="/community/list"</script>'

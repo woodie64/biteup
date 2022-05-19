@@ -1,3 +1,4 @@
+from django.db.models import PositiveIntegerField
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, EmailField, \
     SelectField, SelectMultipleField, FieldList, SubmitField, FileField  # AgreeField
@@ -47,6 +48,7 @@ class AnswerForm(FlaskForm):
 class CommunityForm(FlaskForm):
     subject = StringField('제목', validators=[DataRequired('제목은 필수입력 항목입니다.')])
     content = TextAreaField('내용', validators=[DataRequired('내용은 필수입력 항목입니다.')])
+    hits = PositiveIntegerField(default=0, verbose_name='조회수')
     file = StringField('파일')
 
 

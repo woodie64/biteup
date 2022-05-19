@@ -120,7 +120,11 @@ def password_reset_confirm():
 @bp.route('/delete')
 @login_required
 def delete():
-
+    # if request.method == 'POST' and form.validate_on_submit():
+    #     user = User.query.get()
+    #     db.session.delete(user)
+    #     db.session.commit()
+    #     return '<script>alert("삭제되었습니다.");location.href="/"</script>'
     return render_template('auth/withdrawal.html')
 
 
