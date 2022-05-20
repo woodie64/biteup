@@ -64,7 +64,7 @@ class NoticeForm(FlaskForm):
 
 # 프로필
 class EditProfileForm(FlaskForm):
-    username = StringField('이름', validators=[DataRequired(), Length(min=3, max=10, message=('3자에서 10자 이하로 입력해주세요.'))])
+    username = StringField('이름', validators=[DataRequired(), Length(min=2, max=10, message=('2자에서 10자 이하로 입력해주세요.'))])
     location = StringField('주소', validators=[Length(0, 64)])
     about_me = TextAreaField('자기소개')
     submit = SubmitField('저장')
