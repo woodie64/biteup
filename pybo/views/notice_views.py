@@ -68,7 +68,7 @@ def create():
             return '<script>alert("작성 되었습니다.");location.href="/notice/list"</script>'
         return render_template('notice/notice_form.html', form=form)
     else:
-        return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'
+        return '<script>alert("글쓰기 권한이 없습니다.");location.href="/"</script>'
 
 
 @bp.route('/modify/<int:notice_id>', methods=('GET', 'POST'))
