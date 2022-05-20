@@ -38,7 +38,7 @@
                 <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
                     notice.voter|length }}
                 </div>
-                <a href="#" data-uri="{{ url_for('vote.notice', notice_id=notice.id) }}"
+                <a data-uri="{{ url_for('vote.notice', notice_id=notice.id) }}"
                    class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
             </div>
             {% if g.user == notice.user %}
@@ -58,7 +58,7 @@
                         <div class="mb-2">
                             <div style="font-weight:bold">{{ anotice.user.username }}</div>
                             <div style="margin-left:10px">
-                                <a id="goodButton" href="#" class="recommend btn btn-sm btn-secondary btn-block my-1"
+                                <a id="goodButton" class="recommend btn btn-sm btn-secondary btn-block my-1"
                                    data-uri="{{ url_for('vote.anotice', anotice_id=anotice.id) }}">
                             <span class="voter-number">
                                 <img src="/static/good.png" style="height:17px;padding-bottom:5px;"/>
@@ -69,7 +69,7 @@
                         <div class="card-body">
                             <div class="card-text" style="white-space: pre-line;">{{ anotice.content }}</div>
                         </div>
-                        <div style="color:#afafaf">{{ anotice.create_date|datetime }}</div>
+                        <div style="color:#a7a7a7">{{ anotice.create_date|datetime }}</div>
                     </div>
                     <div class="d-flex justify-content-end">
                         {% if g.user == anotice.user %}

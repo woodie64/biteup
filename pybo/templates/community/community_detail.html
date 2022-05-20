@@ -38,7 +38,7 @@
                 <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
                     community.voter|length }}
                 </div>
-                <a href="#" data-uri="{{ url_for('vote.community', community_id=community.id) }}"
+                <a data-uri="{{ url_for('vote.community', community_id=community.id) }}"
                    class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
             </div>
             {% if g.user == community.user %}
@@ -58,7 +58,7 @@
                         <div class="mb-2">
                             <div style="font-weight:bold">{{ answer.user.username }}</div>
                             <div style="margin-left:10px">
-                                <a id="goodButton" href="#" class="recommend btn btn-sm btn-secondary btn-block my-1"
+                                <a id="goodButton" class="recommend btn btn-sm btn-secondary btn-block my-1"
                                    data-uri="{{ url_for('vote.answer', answer_id=answer.id) }}">
                             <span class="voter-number">
                                 <img src="/static/good.png" style="height:17px;padding-bottom:5px;"/>
