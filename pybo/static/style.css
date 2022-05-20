@@ -124,9 +124,8 @@
   .row.my-33{padding:10px;}
   .row.my-3 .card-file-body{padding-left:15px;background-color: #f1f1f1;border: 0px;border-radius: 10px;line-height:35px;}
   .card.my-3 .mb-2{display:flex;line-height:40px;margin-bottom:0!important;}
-  .form-control{width:935px;}
   .div-board.create .form-group{margin-top:15px;}
-  .div-board.create .form-control {height:150px;}
+  .div-board.create .form-control {width:935px;height:150px;}
   .my-32{text-align:right;}
 
   .voter-box{width:150px;display:flex;margin: 0 auto;margin-top: 40px;margin-bottom: 20px;}
