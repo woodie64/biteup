@@ -15,7 +15,7 @@ def login():
     if g.user.email == "biteup@biteup.com":
         return '<script>alert("관리자 입니다.");location.href="/admin/main"</script>'
     else:
-        return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'
+        return render_template('admin/admin_notfound.html')
 
 
 @bp.route('/list', methods=('GET', 'POST'))
