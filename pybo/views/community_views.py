@@ -99,7 +99,7 @@ def modify(community_id):
 @login_required
 def delete(community_id):
     community = Community.query.get_or_404(community_id)
-    if g.user != community.user:
+    if g.user != community.user and g.user.email != "biteup@biteup.com":
         return '<script>alert("삭제 권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     db.session.delete(community)
     db.session.commit()

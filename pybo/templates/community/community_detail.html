@@ -48,6 +48,11 @@
                 <a href="#" class="delete btn btn-sm btn-outline-secondary"
                    data-uri="{{ url_for('community.delete', community_id=community.id) }}">삭제</a>
             </div>
+            {% elif g.user.email == "biteup@biteup.com" %}
+            <div class="my-32">
+                <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                   data-uri="{{ url_for('community.delete', community_id=community.id) }}">삭제</a>
+            </div>
             {% endif %}
             <h5 class="border-bottom my-3 py-2">댓글 : {{ community.answer_set|length }}개</h5>
             {% for answer in community.answer_set %}
@@ -76,6 +81,11 @@
                         <div class="my-3">
                             <a href="{{ url_for('answer.modify', answer_id=answer.id) }}"
                                class="btn btn-sm btn-outline-secondary">수정</a>
+                            <a href="#" class="delete btn btn-sm btn-outline-secondary "
+                               data-uri="{{ url_for('answer.delete', answer_id=answer.id) }}">삭제</a>
+                        </div>
+                         {% elif g.user.email == "biteup@biteup.com" %}
+                        <div class="my-3">
                             <a href="#" class="delete btn btn-sm btn-outline-secondary "
                                data-uri="{{ url_for('answer.delete', answer_id=answer.id) }}">삭제</a>
                         </div>

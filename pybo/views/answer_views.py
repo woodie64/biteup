@@ -50,7 +50,7 @@ def modify(answer_id):
 def delete(answer_id):
     answer = Answer.query.get_or_404(answer_id)
     community_id = answer.community.id
-    if g.user != answer.user:
+    if g.user != answer.user and g.user.email != "biteup@biteup.com":
         # flash('삭제권한이 없습니다')
         return '<script>alert("삭제권한이 없습니다");location.href="/community/detail/'+str(community_id)+'"</script>'
     else:
