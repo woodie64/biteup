@@ -2,7 +2,7 @@
 {% block content %}
 <title>{{ community.subject }}</title>
 <div id="container my-3">
-    <div id="contents" class="div-board">
+    <div id="contents" class="div-board create">
         <div class="container-warp list">
             {% for message in get_flashed_messages() %}
             <div class="alert alert-danger" role="alert">
@@ -10,6 +10,15 @@
             </div>
             {% endfor %}
             <h2 class="border-bottom py-2">{{ community.subject }}</h2>
+            <div class="border-bottom user">
+                <div class="left-border">
+                    <div class="border-username">{{ community.user.username }}</div>
+                    <div class="border-date">{{ community.create_date|datetime }}</div>
+                </div>
+                <div class="border-customers">
+                    <span>조회 88</span>
+                </div>
+            </div>
             <div class="row my-3">
                 <div class="col-11">
                     <!-- 기존내용 -->
@@ -17,59 +26,52 @@
                         <div class="card-body">
                             <div class="card-text" style="white-space: pre-line;">{{ community.content }}</div>
                         </div>
-                        {% for n in files %}
-                        <li>{{n}}</li>
-                        {% endfor %}
                     </div>
-                    <div class="badge badge-light p-2 text-left">
-                        <div>
-                            <span>조회수</span>
-                        </div>
-                        <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
-                            community.voter|length }}
-                        </div>
-                        <a href="#" data-uri="{{ url_for('vote.community', community_id=community.id) }}"
-                           class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
-                        <div class="mb-2">{{ community.user.username }}</div>
-                        <div>{{ community.create_date|datetime }}</div>
-                        {% if g.user == community.user %}
-                        <div class="my-3">
-                            <a href="{{ url_for('community.modify', community_id=community.id) }}"
-                               class="btn btn-sm btn-outline-secondary">수정</a>
-                            <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                               data-uri="{{ url_for('community.delete', community_id=community.id) }}">삭제</a>
-                        </div>
-                        {% endif %}
-                        <div style="text-align:center;">
-                            <a href="/community/file_download/{{ community.file }}">
-                            <div>{{ community.file }}</div>
+                    <div class="card-file">
+                        <a href="/community/file_download/{{ community.file }}">
+                            <div class="card-file-body">{{ community.file }}</div>
                         </a>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <h5 class="border-bottom my-3 py-2">댓글 : {{ community.answer_set|length }}개</h5>
-        {% for answer in community.answer_set %}
-        <div class="row my-3">
-            <div class="col-11">  <!-- 답변영역 -->
-                <!-- 기존내용 -->
-
-
-                <div class="card my-3">
-                    <div class="card-body">
-                        <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
-                    </div>
+            <div class="voter-box">
+                <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
+                    community.voter|length }}
                 </div>
-                <div class="d-flex justify-content-end">
-                    <div class="badge badge-light p-2 text-left">
-                        <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{
-                            answer.voter|length }}
+                <a href="#" data-uri="{{ url_for('vote.community', community_id=community.id) }}"
+                   class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
+            </div>
+            {% if g.user == community.user %}
+            <div class="my-32">
+                <a href="{{ url_for('community.modify', community_id=community.id) }}"
+                   class="btn btn-sm btn-outline-secondary">수정</a>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                   data-uri="{{ url_for('community.delete', community_id=community.id) }}">삭제</a>
+            </div>
+            {% endif %}
+            <h5 class="border-bottom my-3 py-2">댓글 : {{ community.answer_set|length }}개</h5>
+            {% for answer in community.answer_set %}
+            <div class="border-bottom row my-33">
+                <div class="col-11">  <!-- 답변영역 -->
+                    <!-- 기존내용 -->
+                    <div class="card my-3">
+                        <div class="mb-2">
+                            <div style="font-weight:bold">{{ answer.user.username }}</div>
+                            <div style="margin-left:10px">
+                                <a id="goodButton" href="#" class="recommend btn btn-sm btn-secondary btn-block my-1"
+                                   data-uri="{{ url_for('vote.answer', answer_id=answer.id) }}">
+                            <span class="voter-number">
+                                <img src="/static/good.png" style="height:17px;padding-bottom:5px;"/>
+                                {{ answer.voter|length }}</span>
+                                </a>
+                            </div>
                         </div>
-                        <a href="#" data-uri="{{ url_for('vote.answer', answer_id=answer.id) }}"
-                           class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
-                        <div class="mb-2">{{ answer.user.username }}</div>
-                        <div>{{ answer.create_date|datetime }}</div>
+                        <div class="card-body">
+                            <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+                        </div>
+                        <div style="color:#afafaf">{{ answer.create_date|datetime }}</div>
+                    </div>
+                    <div class="d-flex justify-content-end">
                         {% if g.user == answer.user %}
                         <div class="my-3">
                             <a href="{{ url_for('answer.modify', answer_id=answer.id) }}"
@@ -81,26 +83,23 @@
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}
-        <form action="{{ url_for('answer.create', community_id=community.id) }}" method="post" class="my-3">
-
-
-
-            {{ form.csrf_token }}
-            <!-- 오류표시 Start -->
-            {% for field, errors in form.errors.items() %}
-            <div class="alert alert-danger" role="alert">
-                <strong>{{ form[field].label }}</strong>: {{ ', '.join(errors) }}
-            </div>
             {% endfor %}
-            <!-- 오류표시 End -->
-            <div class="form-group">
+            <form action="{{ url_for('answer.create', community_id=community.id) }}" method="post" class="my-3">
+                {{ form.csrf_token }}
+                <!-- 오류표시 Start -->
+                {% for field, errors in form.errors.items() %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>{{ form[field].label }}</strong>: {{ ', '.join(errors) }}
+                </div>
+                {% endfor %}
+                <!-- 오류표시 End -->
+                <div class="form-group">
             <textarea {% if not g.user %}disabled{% endif %}
                       name="content" id="content" class="form-control" rows="10"></textarea>
-            </div>
-            <input type="submit" value="답변등록" class="btn btn-primary">
-        </form>
+                </div>
+                <input type="submit" value="답변등록" class="btn btn-primary">
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -122,3 +121,7 @@ $(document).ready(function(){
 
 </script>
 {% endblock %}
+
+{% for n in files %}
+<li>{{n}}</li>
+{% endfor %}

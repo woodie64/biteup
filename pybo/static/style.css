@@ -51,7 +51,7 @@
   .delete-group tbody{margin-top:20px;}
   .delete-group h3{font-size: 15px;font-weight: 700;color: #000;text-align: center;margin-bottom:0px;}
   .delete-group h4{font-size: 14px;font-weight: 700;}
-  .delete-group strong{color:#ff1e1e;}ㄹ
+  .delete-group strong{color:#ff1e1e;}
   .member-wrap.withdrawal .btn-submit{width: 100%;margin-top: 25px;line-height: 45px;font-size: 20px;font-weight: 500;letter-spacing: -0.03em;color: #fff;background: #333;border-radius: 55px;text-align: center;-webkit-transition: box-shadow 0.3s ease-out, background 0.3s ease-out;transition: box-shadow 0.3s ease-out, background 0.3s ease-out;}
   .member-wrap.withdrawal .btn-submit:hover{background-color:#000}
   .delete-sub .info{width: 350px;background: #f7f7f7;}
@@ -67,9 +67,7 @@
   .btn-primary{position:relative;float:right;line-height:15px;}
   .btn.btn-outline-secondary{padding:0px 10px;border-color: #ced4da;;}
   .form_title{font-size:35px;font-weight:900;text-align:center;margin-bottom:20px}
-  .col-4.input-group{position:relative;display: flex;margin:0 auto;}
-  .form-control.kw{height:15px}
-  .col-11 {flex: 0 0 100%;max-width: 100%;}
+
 
 
   .profile-group{width: 100%;}
@@ -100,23 +98,44 @@
   .trade-low{width:100%;margin: 0 auto;padding: 15px 0px;position: relative;display:flex;background-color:#f2f2f2;margin-top:100px;}
   .trade-low td{width: 1200px;text-align: center;}
   .container-wrap.main-list{width:800px;margin: 0 auto;}
-  .form-group .form-control{margin-top:50px;}
+  .form-group label{color:black;font-weight:bold;}
+  .div-board.form-group{width:935px;}
 
   .row.my-3{margin-bottom:5px}
-  .btn-block{width:82%}
+  .btn-block{line-height:10px;width:90%}
   .p-3{padding:.3rem!important;}
   .d-flex{display:block!important;float: right;}
-  .card-body{padding:0px;width: 87%;float: left;min-height: 140px;}
-  .card-text{float:left;padding:15px 15px;}
-  .badge-light.p-2.text-left{float:right;}
+  .row.my-3 .card-body{padding:0px;width: 100%;min-height: 450px;}
+  .row.my-3 .card-text{float:left;padding:15px 15px;}
   .badge-light.p-2.text-left .mb-2{font-size:15px;}
   .badge-light.p-2.text-left .my-3{margin-top:5px;}
   .table .thead-dark th {color: #3e3e3e;background-color: #ededed;border-color: #dfdfdf;}
   .table-middle {color: #3e3e3e;background-color: #ededed;border-color: #dfdfdf;}
+  .col-4.input-group{position:relative;display: flex;margin:0 auto;}
+  .form-control.kw{height:15px}
+  .div-board.create{padding: 30px;}
+  .border-bottom.user{display: flex;padding-bottom:10px;}
+  .left-border{display: flex;margin-left: 10px;}
+  .border-username{{margin-left:10px;}}
+  .border-date{margin-left:10px;}
+  .border-customers{right: 58px;position:absolute}
+  .container-warp.list{padding:20px;}
+  .row.my-3 .card-file{width:30%}
+  .row.my-33{padding:10px;}
+  .row.my-3 .card-file-body{padding-left:15px;background-color: #f1f1f1;border: 0px;border-radius: 10px;line-height:35px;}
+  .card.my-3 .mb-2{display:flex;line-height:40px;margin-bottom:0!important;}
+  .form-control{width:935px;}
+  .div-board.create .form-group{margin-top:15px;}
+  .div-board.create .form-control {height:150px;}
+  .my-32{text-align:right;}
 
+  .voter-box{width:150px;display:flex;margin: 0 auto;margin-top: 40px;margin-bottom: 20px;}
+  .voter-box .p-3{padding: 5px 16px!important;line-height: 35px;border-radius: 0!important;}
+  .voter-box .my-1, .mb-1{margin-top: 1px!important;margin-bottom: 1px!important;line-height: 35px;border-radius: 0!important;}
 
+{display: flex;border-bottom: 1px solid #dee2e6!important;border-bottom-width: 1px !important;border-bottom-style: solid !important;border-bottom-color: rgb(222, 226, 230) !important;}
 
-
+ .write-btn{right: 58px;position:absolute;bottom:10px}
  .form-group select{width:100%;height: 40px;border: 0px;border-radius: 25px;font-size: 13px;padding-left: 15px;background-color: #f8f8f8;letter-spacing: 0.03em;}
  .check{color: #000;font-size: 15px;line-height: 18px;font-weight: 900;}
  .agreement_chk, .agreement_chk All{margin-top:15px}
@@ -136,7 +155,7 @@
   .agreement_box{margin: 0 auto;text-align: left;word-break: keep-all;overflow-x: hidden;height: 150px;margin-top: 15px;padding: 15px 20px;background: #f8f8f8;border: 1px solid #545454;border-top: 1px solid #7e7e7e;line-height: 20px}
   .agreement_box h3{font-size: 15px;font-weight: 700;}
   .div-cont{width:800px;margin: 0 auto 0 auto;box-sizing: border-box;padding: 50px 20px 200px 20px;position: relative;text-align: left;max-width: 1060px;}
-  .div-board{width:100%;margin: 0 auto 0 auto;box-sizing: border-box;padding: 50px 60px 200px 60px;position: relative;text-align: left;max-width: 1200px;background-color:#fff;}
+  .div-board{width:100%;margin: 0 auto 0 auto;box-sizing: border-box;padding: 50px 30px 200px 30px;position: relative;text-align: left;max-width: 1060px;background-color:#fff;}
   .error{font-size: 1px;height: 20px;color:red;font-weight: 700;}
 
 
@@ -175,8 +194,7 @@
 
  .ck.ck-editor {max-width: 1200px;}
  .ck-editor__editable {min-height: 400px;}
-
-
-
  .table em{color: #ffae00;font-style: normal;font-weight: bold;}
  .btn_gotop {display: none;position: fixed; bottom: 30px;right: 30px;z-index: 999;}
+
+
