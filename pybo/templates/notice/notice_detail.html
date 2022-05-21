@@ -24,12 +24,17 @@
                     <!-- 기존내용 -->
                     <div class="card">
                         <div class="card-body">
-                            <div class="card-text" style="white-space: pre-line;">{{ notice.content }}</div>
+                            <div class="card-text" style="white-space: pre-line;">
+                                {{ notice.content }}
+                                {% if notice.file != None %}
+                                <img src="/notice/file_download/{{ notice.file }}">
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                     {% if notice.file != None %}
                     <div class="card-file">
-                        <a href="/community/file_download/{{ notice.file }}}">
+                        <a href="/notice/file_download/{{ notice.file }}">
                             <div class="card-file-body">{{ notice.file }}</div>
                         </a>
                     </div>

@@ -26,7 +26,9 @@
                         <div class="card-body">
                             <div class="card-text" style="white-space: pre-line;">
                                 {{ community.content }}
-<!--                                <img src="/community/file_download/{{ community.file }}">-->
+                                {% if community.file != None %}
+                                <img src="/community/file_download/{{ community.file }}">
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -89,7 +91,7 @@
                             <a href="#" class="delete btn btn-sm btn-outline-secondary "
                                data-uri="{{ url_for('answer.delete', answer_id=answer.id) }}">삭제</a>
                         </div>
-                         {% elif g.user.email == "biteup@biteup.com" %}
+                        {% elif g.user.email == "biteup@biteup.com" %}
                         <div class="my-3">
                             <a href="#" class="delete btn btn-sm btn-outline-secondary "
                                data-uri="{{ url_for('answer.delete', answer_id=answer.id) }}">삭제</a>
@@ -132,6 +134,7 @@ $(document).ready(function(){
         }
     });
 });
+
 
 
 </script>
