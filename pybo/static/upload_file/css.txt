@@ -1,6 +1,0 @@
-.bg-light
-background-color:#fff
-
-.table td
-color:#fff
-
