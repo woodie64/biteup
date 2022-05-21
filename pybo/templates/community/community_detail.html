@@ -27,11 +27,13 @@
                             <div class="card-text" style="white-space: pre-line;">{{ community.content }}</div>
                         </div>
                     </div>
+                    {% if community.file != None %}
                     <div class="card-file">
                         <a href="/community/file_download/{{ community.file }}">
                             <div class="card-file-body">{{ community.file }}</div>
                         </a>
                     </div>
+                    {% endif %}
                 </div>
             </div>
             <div class="voter-box">
