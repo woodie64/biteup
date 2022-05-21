@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
 from pybo import db
-from pybo.forms import UserCreateForm, UserLoginForm, PasswordResetForm, PasswordResetConfirmForm, AgreeForm
+from pybo.forms import UserCreateForm, UserLoginForm, PasswordResetForm, PasswordResetConfirmForm, AgreeForm, WithdrawalForm
 from pybo.models import User
 import functools
 
@@ -117,15 +117,18 @@ def password_reset_confirm():
     return render_template('auth/password_reset_confirm.html', form=form)
 
 
-@bp.route('/delete')
+@bp.route('/delete_user', methods=('GET', 'POST'))
 @login_required
-def delete():
-    # if request.method == 'POST' and form.validate_on_submit():
-    #     user = User.query.get()
-    #     db.session.delete(user)
-    #     db.session.commit()
-    #     return '<script>alert("삭제되었습니다.");location.href="/"</script>'
-    return render_template('auth/withdrawal.html')
+def delete_user():
+    print("/delete_user")
+    form = WithdrawalForm()
+    if request.method == 'POST' and form.validate_on_submit():
+            user = User.query.get(g.user.id)
+            db.session.delete(user)
+            db.session.commit()
+            print("/delete_user success")
+            return '<script>alert("탈퇴되었습니다.");location.href="/"</script>'
+    return render_template('auth/withdrawal.html', form=form)
 
 
 @bp.route('/paper/provision')

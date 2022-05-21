@@ -5,7 +5,7 @@
     <div id="contents" class="div-cont delete">
         <div class="member-wrap withdrawal">
             <form class="sub_form" method="post" autocomplete="off">
-
+                {{ form.csrf_token }}
                 <h3>회원탈퇴</h3>
                 <div class="entry">
                     <table class="delete-group">
@@ -44,7 +44,7 @@
                                 <h3>비밀번호</h3>
                             </td>
                             <td class="sub">
-                                <input type="password" name="password" id="password" value="" required>
+                                <input  name="password" id="password" required type="password" value="{{ form.password.data or '' }}" >
                             </td>
                         </tr>
                         </tbody>
