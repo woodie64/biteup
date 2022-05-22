@@ -47,7 +47,31 @@ def _list():
 def detail(notice_id):
     form = AnoticeForm()
     notice = Notice.query.get_or_404(notice_id)
-    return render_template('notice/notice_detail.html', notice=notice, form=form)
+
+    # 입력 파라미터
+    page = request.args.get('page', type=int, default=1)
+    kw = request.args.get('kw', type=str, default='')
+
+    # 조회
+    notice_list = Notice.query.order_by(Notice.create_date.desc())
+    if kw:
+        search = '%%{}%%'.format(kw)
+        sub_query = db.session.query(Anotice.notice_id, Anotice.content, User.username) \
+            .join(User, Anotice.user_id == User.id).subquery()
+        notice_list = notice_list \
+            .join(User) \
+            .outerjoin(sub_query, sub_query.c.notice_id == Notice.id) \
+            .filter(Notice.subject.ilike(search) |  # 제목
+                    Notice.content.ilike(search) |  # 내용
+                    User.username.ilike(search) |  # 작성자
+                    sub_query.c.content.ilike(search) |  # 답변내용
+                    sub_query.c.username.ilike(search)  # 답변작성자
+                    ) \
+            .distinct()
+
+    # 페이징
+    notice_list = notice_list.paginate(page, per_page=10)
+    return render_template('notice/notice_detail.html', notice=notice, form=form, notice_list=notice_list, page=page, kw=kw)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -102,7 +126,7 @@ def modify(notice_id):
 @login_required
 def delete(notice_id):
     notice = Notice.query.get_or_404(notice_id)
-    if g.user != notice.user:
+    if g.user != notice.user and g.user.email != "biteup@biteup.com":
         return '<script>alert("삭제 권한이 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
     db.session.delete(notice)
     db.session.commit()

@@ -91,7 +91,9 @@
                     <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
                 </div>
             </div>
+            {% if g.user.email == "biteup@biteup.com" %}
             <a href="{{ url_for('notice.create') }}" class="btn btn-primary">글쓰기</a>
+            {% endif %}
         </div>
     </div>
 </div>
