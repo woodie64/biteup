@@ -241,9 +241,9 @@
     <div class="container-wrap main-list">
         <div class="fl">
             <div class="tb-cs">
-                <h3>실시간 게시물</h3>
+                <h4>실시간 게시물</h4>
                 <a href="{{ url_for('community._list') }}" class="more">
-                    <span>더보기</span>
+                    <span>더보기<img src="https://flybit.com/static/media/ic_coin_list_arrow.92126bde.svg" style="vertical-align:-4px;"></span>
                 </a>
             </div>
             <div class="list">
@@ -318,5 +318,21 @@
     </div>
 </div>
 <div class="trade-middle-down">
+    <div class="textbox">
+        <div>
+            <div class="text-h1"> 바이트업에서 코인정보를 공유해봐요</div>
+            <div class="text-h2"> 바이트업은
+                <span>가상자산 시황을 실시간으로 제공</span>합니다.
+            </div>
+            <div class="text-h3">
+                <a href="{{ url_for('auth.agree_re') }}" class="link-box btn">
+                    회원가입
+                </a>
+                <a href="{{ url_for('auth.login') }}" class="link-text">
+                    이미 회원이신가요?
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
