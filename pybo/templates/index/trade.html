@@ -247,24 +247,27 @@
                 </a>
             </div>
             <div class="list">
-                <table class="table">
+                <table class="table trade">
                     <thead>
                     </thead>
                     <tbody>
                     {% if community_list %}
                     {% for community in community_list.items %}
                     <tr class="text-center">
-                        <td style="width:20px;">{{ loop.index }}</td>
+                        <td class="num">{{ loop.index }}</td>
                         <td class="text-left">
                             <a href="{{ url_for('community.detail', community_id=community.id) }}">
-                                {{ community.subject}}
+                                <span>{{ community.subject}}</span>
                                 {% if community.answer_set|length > 0 %}
                                 <em>[{{ community.answer_set|length }}]</em>
+                                {% endif %}
+                                <p>{{ community.user.username }}</p>
                             </a>
-                            {% endif %}
                         </td>
-                        <td>{{ community.user.username }}</td>  <!-- 글쓴이 추가 -->
-                        <td></td>
+                        <td class="customers">
+                            조회 112
+                            <p>{{ community.create_date|datetime }}</p>
+                        </td>
                     </tr>
                     {% endfor %}
                     {% else %}
