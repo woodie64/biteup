@@ -100,6 +100,10 @@
   .container-wrap.main-list{width:800px;margin: 0 auto;}
   .form-group label{color:black;font-weight:bold;}
   .div-board.form-group{width:935px;}
+  .tb-cs{display:block;border-bottom: 2px solid #dee2e6;}
+  .tb-cs h3{display:inline-block;}
+  .tb-cs span{display:inline-block;line-height:50px;float:right}
+  .table td{border-top: 0px;border-bottom: 1px solid #dee2e6;}
 
   .row.my-3{margin-bottom:5px}
   .btn-block{line-height:10px;width:90%}
@@ -114,14 +118,14 @@
   .col-4.input-group{position:relative;display: flex;margin:0 auto;}
   .form-control.kw{height:15px}
   .div-board.create{padding: 30px;}
-  .border-bottom.user{display: flex;padding-bottom:10px;}
+  .border-bottom.user{padding-bottom:10px;}
   .left-border{display: flex;margin-left: 10px;}
-  .border-username{{margin-left:10px;}}
-  .border-date{margin-left:10px;}
-  .border-customers{right: 58px;position:absolute}
+  .border-username{display: inline-block;float: left;margin-left:10px;}
+  .border-date{display: inline-block;float: left;margin-left:10px;}
+  .border-customers{display: inline-block;float: right;}
   .container-warp.list{padding:20px;}
   .row.my-3 .card-file{width:30%}
-  .row.my-33{padding:10px;}
+  .row.my-33{padding: 10px;display: flex;}
   .row.my-3 .card-file-body{padding-left:15px;background-color: #f1f1f1;border: 0px;border-radius: 10px;line-height:35px;}
   .card.my-3 .mb-2{display:flex;line-height:40px;margin-bottom:0!important;}
   .div-board.create .form-group{margin-top:15px;}

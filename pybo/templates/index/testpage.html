@@ -16,3 +16,46 @@
     <br>
     비번 : admin
 </span>
+<div class="trade-middle-up">
+    <div class="container-wrap main-list">
+        <div class="fl">
+            <h3>실시간 게시물</h3>
+            <a href="{{ url_for('community._list') }}" class="more">
+                <span>더보기</span>
+            </a>
+            <div class="list">
+                <table class="table">
+                    <thead>
+                    <tr class="text-center thead-dark">
+                    <th>No.</th>
+                    <th style="width:50%">제목</th>
+                    <th>작성자</th>
+                </tr>
+                    </thead>
+                    <tbody>
+                {% if community_list %}
+                {% for community in community_list.items %}
+                <tr class="text-center">
+                    <td>{{ community_list.total - ((community_list.page-1) * community_list.per_page) - loop.index0 }}</td>
+                    <td class="text-left">
+                        <a href="{{ url_for('community.detail', community_id=community.id) }}">
+                            {{ community.subject}}
+                            {% if community.answer_set|length > 0 %}
+                            <em>[{{ community.answer_set|length }}]</em>
+                        </a>
+                        {% endif %}
+                    </td>
+                    <td>{{ community.user.username }}</td>  <!-- 글쓴이 추가 -->
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="3">내용이 없습니다.</td>
+                </tr>
+                {% endif %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
