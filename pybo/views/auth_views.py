@@ -37,6 +37,8 @@ def signup():
                         create_date=datetime.now())
             db.session.add(user)
             db.session.commit()
+            print("계정이 생성됨")
+            print(form.email.data)
             return '<script>alert("계정이 생성되었습니다.");location.href="/"</script>'
         else:
             return '<script>alert("이미 존재하는 계정입니다.");location.href="/signup"</script>'
@@ -54,6 +56,7 @@ def login():
         elif not check_password_hash(user.password, form.password.data):
             error = '비밀번호가 일치하지 않습니다'
         if error is None:
+            print("로그인 : "+user.email)
             session.clear()
             session['user_id'] = user.id
             return redirect(url_for('index._list'))
@@ -72,6 +75,7 @@ def load_logged_in_user():
 
 @bp.route('/logout')
 def logout():
+    print("로그아웃 : " + g.user.email)
     session.clear()
     return redirect(url_for('index._list'))
 
@@ -95,9 +99,8 @@ def password_reset():
                                     username=form.username.data,
                                     passwd_answer=form.passwd_answer.data).first()
         if not user:
-            # error = '등록되지 않은 사용자 정보입니다.'
+            print("등록되지 않은 사용자 비밀번호 변경")
             return '<script>alert("등록되지 않은 사용자 정보입니다.");location.href="/password_reset"</script>'
-            # flash(error)
         if error is None:
             return redirect(url_for('auth.password_reset_confirm', id=form.email.data))
     return render_template('auth/password_reset.html', form=form)
@@ -111,8 +114,8 @@ def password_reset_confirm():
         user.password = generate_password_hash(form.password1.data)
         db.session.add(user)
         db.session.commit()
-        # flash("비밀번호가 변경되었습니다.")
-        # return redirect(url_for('auth.login'))
+        print(user.email)
+        print("비밀번호 변경됨")
         return '<script>alert("비밀번호가 변경되었습니다.");location.href="/login"</script>'
     return render_template('auth/password_reset_confirm.html', form=form)
 
@@ -120,13 +123,13 @@ def password_reset_confirm():
 @bp.route('/delete_user', methods=('GET', 'POST'))
 @login_required
 def delete_user():
-    print("/delete_user")
     form = WithdrawalForm()
     if request.method == 'POST' and form.validate_on_submit():
             user = User.query.get(g.user.id)
             db.session.delete(user)
             db.session.commit()
-            print("/delete_user success")
+            print("계정 탈퇴함")
+            print(g.user.email+" -> "+user.email)
             return '<script>alert("탈퇴되었습니다.");location.href="/"</script>'
     return render_template('auth/withdrawal.html', form=form)
 

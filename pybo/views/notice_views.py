@@ -78,7 +78,7 @@ def detail(notice_id):
 @login_required
 def create():
     if g.user.email == "biteup@biteup.com":
-        print("/create")
+        print("create notice")
         form = NoticeForm()
         filename = None
 

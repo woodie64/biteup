@@ -70,16 +70,8 @@ def detail(community_id):
             .distinct()
 
         # 조회수
-        ip = get_client_ip(request)
-        cnt = CommunityCount.objects.filter(ip=ip, community=community).count()
-        if cnt == 0:
-            qc = CommunityCount(ip=ip, community=community)
-            qc.save()
-            if community.view_count:
-                community.view_count += 1
-            else:
-                community.view_count = 1
-            community.save()
+
+
 
     # 페이징
     community_list = community_list.paginate(page, per_page=10)
@@ -89,7 +81,6 @@ def detail(community_id):
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
-    print("/create")
     form = CommunityForm()
     filename = None
 
@@ -102,6 +93,16 @@ def create():
 
         db.session.add(community)
         db.session.commit()
+
+        #로그
+        print("게시글 생성")
+        print("작성자 : " + g.user.email)
+        print("별명 : " + g.user.username)
+        print("제목 : " + form.subject.data)
+        print("내용 : "+ form.content.data)
+        if filename is not None:
+            print("업로드 파일 : "+ filename)
+        ###
         return '<script>alert("작성 되었습니다.");location.href="/community/list"</script>'
     return render_template('community/community_form.html', form=form)
 
@@ -109,10 +110,10 @@ def create():
 @bp.route('/modify/<int:community_id>', methods=('GET', 'POST'))
 @login_required
 def modify(community_id):
-    print("/modify/<int:community_id>")
     community = Community.query.get_or_404(community_id)
     if g.user != community.user:
-        # return redirect(url_for('community.detail', community_id=community_id))
+        print("게시글 수정 권한 없음")
+        print(g.user.email+"->"+community.user.email)
         return '<script>alert("수정권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     if request.method == 'POST':  # POST 요청
         form = CommunityForm()
@@ -121,10 +122,18 @@ def modify(community_id):
                 filename = file_upload(request.files['file'])
                 community.file = filename
 
-            community.content = form.content.data
+            #로그
+            print("게시글 수정됨")
+            print(g.user.email+" -> "+community.user.email)
+            print("제목 : "+community.subject+" -> "+form.subject.data)
+            print("본문 : "+community.content+" -> "+form.content.data)
+            ###
+
             community.subject = form.subject.data
+            community.content = form.content.data
             community.modify_date = datetime.now()  # 수정일시 저장
             db.session.commit()
+
             return '<script>alert("수정되었습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     else:  # GET 요청
         form = CommunityForm(obj=community)
@@ -136,23 +145,34 @@ def modify(community_id):
 def delete(community_id):
     community = Community.query.get_or_404(community_id)
     if g.user != community.user and g.user.email != "biteup@biteup.com":
+
+        print("게시글 삭제 권한 없음")
+        print(g.user.email+" -> "+community.user.email)
         return '<script>alert("삭제 권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
+
+    #로깅
+    print("게시글 삭제됨")
+    print(g.user.email+" -> "+community.user.email)
+    print("제목 : " + community.subject)
+    print("본문 : " + community.content)
+    ####
+
     db.session.delete(community)
     db.session.commit()
-    # return redirect(url_for('community._list'))
     return '<script>alert("삭제되었습니다.");location.href="/community/list"</script>'
 
 
 @bp.route('/file_download/<string:file_name>')
 @login_required
 def file_download(file_name):
-    print("file_download success")
     try:
         path = os.getcwd()
         UPLOAD_FOLDER = os.path.join(path, 'pybo\\static\\upload_file\\')
         file_name = UPLOAD_FOLDER + file_name
         print(file_name)
+        print("file_download success")
     except:
+        print("file_download fail")
         return '<script>alert("error");</script>'
     return send_file(file_name, mimetype='image/png', as_attachment=True)
 

@@ -13,8 +13,10 @@ bp = Blueprint('admin', __name__, url_prefix='/admin')
 @login_required
 def login():
     if g.user.email == "biteup@biteup.com":
+        print("관리자 페이지 접근 성공: " + g.user.email)
         return '<script>alert("관리자 입니다.");location.href="/admin/main"</script>'
     else:
+        print("관리자 페이지 접근 실패 : " + g.user.email)
         return render_template('admin/admin_notfound.html')
 
 
@@ -35,6 +37,10 @@ def user_delete(user_id):
             return '<script>alert("관리자 계정은 삭제가 불가능합니다.");location.href="/admin/list"</script>'
         else:
             user = User.query.get_or_404(user_id)
+            #로깅
+            print("관리자 페이지 : 계정 삭제")
+            print(g.user.email+" -> "+user.email)
+            ###
             db.session.delete(user)
             db.session.commit()
             return '<script>alert("삭제되었습니다.");location.href="/admin/list"</script>'
@@ -46,6 +52,7 @@ def user_delete(user_id):
 @login_required
 def main():
     if g.user.email == "biteup@biteup.com":
+        print("/admin/main에 접근 시도 : " + g.user.email)
         return render_template('admin/admin_form.html')
     else:
         return '<script>alert("관리자의 권한이 없습니다.");location.href="/"</script>'
