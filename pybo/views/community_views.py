@@ -48,6 +48,10 @@ def detail(community_id):
     form = AnswerForm()
     community = Community.query.get_or_404(community_id)
 
+    #조회수 증가
+    community.hits = community.hits + 1
+    db.session.commit()
+
     # 입력 파라미터
     page = request.args.get('page', type=int, default=1)
     kw = request.args.get('kw', type=str, default='')
@@ -89,7 +93,7 @@ def create():
             filename = file_upload(request.files['file'])
 
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(),
-                              user=g.user, file=filename)
+                              user=g.user, file=filename, hits=1)
 
         db.session.add(community)
         db.session.commit()

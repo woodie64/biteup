@@ -79,4 +79,4 @@ class EditPasswordForm(FlaskForm):
 
 
 class WithdrawalForm(FlaskForm):
-    text = TextAreaField('탈퇴', validators=[DataRequired('탈퇴는 필수입력 항목입니다.')])
+    password = PasswordField('현재 비밀번호', validators=[DataRequired()])

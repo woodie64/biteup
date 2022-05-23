@@ -36,7 +36,7 @@ class Community(db.Model):
     modify_date = db.Column(db.DateTime(), nullable=True)
     voter = db.relationship('User', secondary=community_voter, backref=db.backref('community_voter_set'))
     file = db.Column(db.String(50))
-    hits = db.Column(db.Integer)
+    hits = db.Column(db.Integer, nullable=True)
 
 class Notice(db.Model):
     id = db.Column(db.Integer, primary_key=True)
