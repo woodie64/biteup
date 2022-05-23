@@ -69,6 +69,18 @@ def detail(community_id):
                     ) \
             .distinct()
 
+        # 조회수
+        ip = get_client_ip(request)
+        cnt = CommunityCount.objects.filter(ip=ip, community=community).count()
+        if cnt == 0:
+            qc = CommunityCount(ip=ip, community=community)
+            qc.save()
+            if community.view_count:
+                community.view_count += 1
+            else:
+                community.view_count = 1
+            community.save()
+
     # 페이징
     community_list = community_list.paginate(page, per_page=10)
     return render_template('community/community_detail.html', community=community, form=form, community_list=community_list, page=page, kw=kw)

@@ -35,7 +35,6 @@ class Community(db.Model):
     user = db.relationship('User', backref=db.backref('community_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
     voter = db.relationship('User', secondary=community_voter, backref=db.backref('community_voter_set'))
-    # hits = db.relationship()
     file = db.Column(db.String(50))
 
 
@@ -93,3 +92,5 @@ class Contact(db.Model):
     subject = db.Column(db.String(200), nullable=False)
     message = db.Column(db.Text(), nullable=False)
     create_date = db.Column(db.DateTime(), nullable=False)
+
+

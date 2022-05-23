@@ -1,8 +1,11 @@
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, PasswordField, EmailField, \
-    SelectField, SelectMultipleField, FieldList, SubmitField, FileField  # AgreeField
+    SelectField, SelectMultipleField, FieldList, SubmitField, FileField
 from wtforms.validators import DataRequired, EqualTo, Email, Length, ValidationError, Regexp
+
+from pybo import models
+from pybo.models import Community
 
 
 class AgreeForm(FlaskForm):
@@ -74,12 +77,6 @@ class EditPasswordForm(FlaskForm):
     password1 = PasswordField('새 비밀번호', validators=[DataRequired(), EqualTo('password2', '비밀번호가 일치하지 않습니다')])
     password2 = PasswordField('새 비밀번호 확인', validators=[DataRequired()])
 
-
-class EditProfileAdminForm(FlaskForm):
-    username = StringField('이름', validators=[Length(0, 64)])
-    location = StringField('주소', validators=[Length(0, 64)])
-    about_me = TextAreaField('자기소개')
-    submit = SubmitField('저장')
 
 class WithdrawalForm(FlaskForm):
     password = PasswordField('현재 비밀번호', validators=[DataRequired()])
