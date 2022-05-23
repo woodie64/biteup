@@ -54,7 +54,7 @@ def delete(anotice_id):
         # flash('삭제권한이 없습니다')
         return '<script>alert("삭제권한이 없습니다");location.href="/notice/detail/'+str(notice_id)+'"</script>'
     else:
-        db.session.delete(answer)
+        db.session.delete(anotice)
         db.session.commit()
         return '<script>alert("삭제되었습니다.");location.href="/notice/detail/'+str(notice_id) + '"</script>'
     return redirect(url_for('notice.detail', notice_id=notice_id))

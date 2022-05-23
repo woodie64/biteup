@@ -72,11 +72,6 @@ def detail(community_id):
                     sub_query.c.username.ilike(search)  # 답변작성자
                     ) \
             .distinct()
-
-        # 조회수
-
-
-
     # 페이징
     community_list = community_list.paginate(page, per_page=10)
     return render_template('community/community_detail.html', community=community, form=form, community_list=community_list, page=page, kw=kw)

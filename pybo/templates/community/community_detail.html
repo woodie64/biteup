@@ -150,7 +150,7 @@
                     <td>{{ community.user.username }}</td>  <!-- 글쓴이 추가 -->
                     <td>{{ community.create_date|datetime }}</td>
                     <td>{{ community.voter|length }}</td>
-                    <td></td>
+                    <td>{{ community.hits }}</td>
                 </tr>
                 {% endfor %}
                 {% else %}

@@ -38,6 +38,7 @@ class Community(db.Model):
     file = db.Column(db.String(50))
     hits = db.Column(db.Integer, nullable=True)
 
+
 class Notice(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     subject = db.Column(db.String(200), nullable=False)
@@ -48,6 +49,7 @@ class Notice(db.Model):
     modify_date = db.Column(db.DateTime(), nullable=True)
     voter = db.relationship('User', secondary=notice_voter, backref=db.backref('notice_voter_set'))
     file = db.Column(db.String(50))
+    hits = db.Column(db.Integer, nullable=True)
 
 
 class Answer(db.Model):

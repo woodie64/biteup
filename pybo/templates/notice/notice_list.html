@@ -33,7 +33,7 @@
                     <td>{{ notice.user.username }}</td>  <!-- 글쓴이 추가 -->
                     <td>{{ notice.create_date|datetime }}</td>
                     <td>{{ notice.voter|length }}</td>
-                    <td></td>
+                    <td>{{ notice.hits }}</td>
                 </tr>
                 {% endfor %}
                 {% else %}

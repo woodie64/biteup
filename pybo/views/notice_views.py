@@ -48,6 +48,10 @@ def detail(notice_id):
     form = AnoticeForm()
     notice = Notice.query.get_or_404(notice_id)
 
+    # 조회수 증가
+    notice.hits = notice.hits + 1
+    db.session.commit()
+
     # 입력 파라미터
     page = request.args.get('page', type=int, default=1)
     kw = request.args.get('kw', type=str, default='')
@@ -87,7 +91,7 @@ def create():
                 filename = file_upload(request.files['file'])
 
             notice = Notice(subject=form.subject.data, content=form.content.data, create_date=datetime.now(),
-                                user=g.user, file=filename)
+                                user=g.user, file=filename, hits=1)
 
             db.session.add(notice)
             db.session.commit()
