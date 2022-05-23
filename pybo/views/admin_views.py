@@ -17,7 +17,7 @@ def login():
         return '<script>alert("관리자 입니다.");location.href="/admin/main"</script>'
     else:
         print("관리자 페이지 접근 실패 : " + g.user.email)
-        return render_template('admin/admin_notfound.html')
+        return render_template('404.html')
 
 
 @bp.route('/list', methods=('GET', 'POST'))
