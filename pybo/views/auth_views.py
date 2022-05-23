@@ -125,11 +125,13 @@ def password_reset_confirm():
 def delete_user():
     form = WithdrawalForm()
     if request.method == 'POST' and form.validate_on_submit():
+        print(form.text.data)
+        if form.text.data == "탈퇴":
+            print("탈퇴")
             user = User.query.get(g.user.id)
             db.session.delete(user)
             db.session.commit()
             print("계정 탈퇴함")
-            print(g.user.email+" -> "+user.email)
             return '<script>alert("탈퇴되었습니다.");location.href="/"</script>'
     return render_template('auth/withdrawal.html', form=form)
 
