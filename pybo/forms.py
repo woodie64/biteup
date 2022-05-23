@@ -4,9 +4,6 @@ from wtforms import StringField, TextAreaField, PasswordField, EmailField, \
     SelectField, SelectMultipleField, FieldList, SubmitField, FileField
 from wtforms.validators import DataRequired, EqualTo, Email, Length, ValidationError, Regexp
 
-from pybo import models
-from pybo.models import Community
-
 
 class AgreeForm(FlaskForm):
     checkbox = SelectField('동의', validators=[DataRequired()])
