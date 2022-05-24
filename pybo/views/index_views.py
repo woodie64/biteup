@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, g, flash, send_file
 from werkzeug.utils import secure_filename
+from pybo.views.auth_views import login_required
 
 from .. import db
 from ..forms import CommunityForm, AnswerForm
@@ -37,6 +38,7 @@ def _list():
 
 
 @bp.route('/exchange')
+@login_required
 def exchange():
     return render_template('index/exchange.html')
 

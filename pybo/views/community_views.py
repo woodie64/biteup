@@ -16,6 +16,7 @@ file_path = "templates/upload_file/"
 
 
 @bp.route('/list')
+@login_required
 def _list():
     # 입력 파라미터
     page = request.args.get('page', type=int, default=1)
@@ -44,6 +45,7 @@ def _list():
 
 
 @bp.route('/detail/<int:community_id>/')
+@login_required
 def detail(community_id):
     form = AnswerForm()
     community = Community.query.get_or_404(community_id)
