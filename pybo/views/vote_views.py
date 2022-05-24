@@ -15,7 +15,7 @@ def community(community_id):
     if g.user == _community.user:
         # flash('본인이 작성한 글은 추천할 수 없습니다')
         # return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");</script>'
-        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");window.history.back();</script>'
     else:
         _community.voter.append(g.user)
         db.session.commit()
@@ -27,7 +27,7 @@ def community(community_id):
 def answer(answer_id):
     _answer = Answer.query.get_or_404(answer_id)
     if g.user == _answer.user:
-        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/community/detail' + str(answer_id) + '"</script>'
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");window.history.back();</script>'
     else:
         _answer.voter.append(g.user)
         db.session.commit()
@@ -41,7 +41,7 @@ def answer(answer_id):
 def notice(notice_id):
     _notice = Notice.query.get_or_404(notice_id)
     if g.user == _notice.user:
-        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");window.history.back();</script>'
     else:
         _notice.voter.append(g.user)
         db.session.commit()
@@ -53,7 +53,7 @@ def notice(notice_id):
 def anotice(anotice_id):
     _anotice = Anotice.query.get_or_404(anotice_id)
     if g.user == _anotice.user:
-        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");location.href="/notice/detail/' + str(anotice_id) + '"</script>'
+        return '<script>alert("본인이 작성한 글은 추천할 수 없습니다.");window.history.back();</script>'
     else:
         _anotice.voter.append(g.user)
         db.session.commit()
