@@ -11,9 +11,17 @@ import functools
 bp = Blueprint('auth', __name__, url_prefix='/')
 
 
-@bp.route('/agree', methods=('GET', 'POST'))
+@bp.route('/agree', methods=('POST', 'GET'))
+def agree():
+    if g.user:
+        session.clear()
+        return '<script>alert("로그아웃 됩니다.");location.href="/agree_re"</script>'
+    else:
+        return '<script>location.href="/agree_re"</script>'
+
+
+@bp.route('/agree_re', methods=('GET', 'POST'))
 def agree_re():
-    session.clear()
     form = AgreeForm()
     if request.method == 'POST' and form.validate_on_submit():
         if not user:
@@ -24,8 +32,17 @@ def agree_re():
     return render_template('auth/agree_re.html', form=form)
 
 
-@bp.route('/signup', methods=('GET', 'POST'))
+@bp.route('/signup', methods=('POST', 'GET'))
 def signup():
+    if g.user:
+        session.clear()
+        return '<script>alert("로그아웃 됩니다.");location.href="/agree_re"</script>'
+    else:
+        return '<script>location.href="/signup_re"</script>'
+
+
+@bp.route('/signup_re', methods=('GET', 'POST'))
+def signup_re():
     form = UserCreateForm()
     if request.method == 'POST' and form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -41,12 +58,21 @@ def signup():
             print(form.email.data)
             return '<script>alert("계정이 생성되었습니다.");location.href="/"</script>'
         else:
-            return '<script>alert("이미 존재하는 계정입니다.");location.href="/signup"</script>'
+            return '<script>alert("이미 존재하는 계정입니다.");location.href="/signup_re"</script>'
     return render_template('auth/signup.html', form=form)
 
 
-@bp.route('/login', methods=('GET', 'POST'))
+@bp.route('/login', methods=('POST', 'GET'))
 def login():
+    if g.user:
+        session.clear()
+        return '<script>alert("로그아웃 됩니다.");location.href="/login_re"</script>'
+    else:
+        return '<script>location.href="/login_re"</script>'
+
+
+@bp.route('/login_re', methods=('GET', 'POST'))
+def login_re():
     form = UserLoginForm()
     if request.method == 'POST' and form.validate_on_submit():
         error = None
