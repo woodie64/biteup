@@ -54,7 +54,9 @@
                     <a class="btn btn-secondary m-1" href="{{ url_for('profile.reset') }}">비밀번호 변경</a>
                 </div>
                 <div style="text-align:right">
+                    {% if g.user.email != "biteup@biteup.com" %}
                     <a href="{{ url_for('auth.delete_user') }}">탈퇴하기</a>
+                    {% endif %}
                 </div>
             </form>
         </div>
