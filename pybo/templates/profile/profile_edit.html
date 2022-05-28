@@ -26,9 +26,13 @@
                             <h3>이름</h3>
                         </td>
                         <td class="edit">
+                            {% if g.user.email == "biteup@biteup.com" %}
+                            <span>{{ g.user.username }}</span>
+                            {% elif g.user %}
                             <input id="username" name="username" type="text" value="{{ g.user.username }}">
                             <br>
                             <span style="font-size:12px;">※ 2자에서 10자 이하로 입력해주세요.</span>
+                            {% endif %}
                         </td>
                     </tr>
                     <tr class="profile-edit">
