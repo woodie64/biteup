@@ -112,10 +112,11 @@ def create():
 @login_required
 def modify(community_id):
     community = Community.query.get_or_404(community_id)
-    if g.user != community.user:
-        print("게시글 수정 권한 없음")
-        print(g.user.email+"->"+community.user.email)
-        return '<script>alert("수정권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
+    # 보안
+    # if g.user != community.user:
+    #     print("게시글 수정 권한 없음")
+    #     print(g.user.email+"->"+community.user.email)
+    #     return '<script>alert("수정권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
     if request.method == 'POST':  # POST 요청
         form = CommunityForm()
         if form.validate_on_submit():
@@ -146,12 +147,10 @@ def modify(community_id):
 def delete(community_id):
     community = Community.query.get_or_404(community_id)
     if g.user != community.user and g.user.email != "biteup@biteup.com":
-
         print("게시글 삭제 권한 없음")
         print(g.user.email+" -> "+community.user.email)
         return '<script>alert("삭제 권한이 없습니다.");location.href="/community/detail/' + str(community_id) + '"</script>'
 
-    #로깅
     print("게시글 삭제됨")
     print(g.user.email+" -> "+community.user.email)
     print("제목 : " + community.subject)

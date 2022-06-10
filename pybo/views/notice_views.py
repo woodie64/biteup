@@ -105,9 +105,9 @@ def create():
 @login_required
 def modify(notice_id):
     notice = Notice.query.get_or_404(notice_id)
-    if g.user != notice.user:
-        return '<script>alert("수정 권한이 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
-        # return redirect(url_for('notice.detail', notice_id=notice_id))
+    # 보안
+    # if g.user != notice.user:
+    #     return '<script>alert("수정 권한이 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
     if request.method == 'POST':  # POST 요청
         form = NoticeForm()
         if form.validate_on_submit():
@@ -130,8 +130,9 @@ def modify(notice_id):
 @login_required
 def delete(notice_id):
     notice = Notice.query.get_or_404(notice_id)
-    if g.user != notice.user and g.user.email != "biteup@biteup.com":
-        return '<script>alert("삭제 권한이 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
+    # 보안
+    # if g.user != notice.user and g.user.email != "biteup@biteup.com":
+    #     return '<script>alert("삭제 권한이 없습니다.");location.href="/notice/detail/' + str(notice_id) + '"</script>'
     db.session.delete(notice)
     db.session.commit()
     # return redirect(url_for('notice._list'))

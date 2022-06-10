@@ -128,22 +128,29 @@ def password_reset():
             print("등록되지 않은 사용자 비밀번호 변경")
             return '<script>alert("등록되지 않은 사용자 정보입니다.");location.href="/password_reset"</script>'
         if error is None:
-            return redirect(url_for('auth.password_reset_confirm', id=form.email.data))
+            user.password = generate_password_hash(form.password1.data)
+            db.session.add(user)
+            db.session.commit()
+            print(user.email)
+            print("비밀번호 변경됨")
+            return '<script>alert("비밀번호가 변경되었습니다.");location.href="/login"</script>'
+
+            # return redirect(url_for('auth.password_reset_confirm', id=form.email.data))
     return render_template('auth/password_reset.html', form=form)
 
 
-@bp.route('/password_reset_confirm', methods=('GET', 'POST'))
-def password_reset_confirm():
-    form = PasswordResetConfirmForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        user = User.query.filter_by(email=request.args['id']).first()
-        user.password = generate_password_hash(form.password1.data)
-        db.session.add(user)
-        db.session.commit()
-        print(user.email)
-        print("비밀번호 변경됨")
-        return '<script>alert("비밀번호가 변경되었습니다.");location.href="/login"</script>'
-    return render_template('auth/password_reset_confirm.html', form=form)
+# @bp.route('/password_reset_confirm', methods=('GET', 'POST'))
+# def password_reset_confirm():
+#     form = PasswordResetConfirmForm()
+#     if request.method == 'POST' and form.validate_on_submit():
+#         user = User.query.filter_by(email=request.args['id']).first()
+#         user.password = generate_password_hash(form.password1.data)
+#         db.session.add(user)
+#         db.session.commit()
+#         print(user.email)
+#         print("비밀번호 변경됨")
+#         return '<script>alert("비밀번호가 변경되었습니다.");location.href="/login"</script>'
+#     return render_template('auth/password_reset_confirm.html', form=form)
 
 
 @bp.route('/delete_user', methods=('GET', 'POST'))

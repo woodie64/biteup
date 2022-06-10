@@ -26,6 +26,8 @@ class PasswordResetForm(FlaskForm):
     email = EmailField('이메일', validators=[DataRequired(), Email('올바른 이메일 주소를 입력하세요.')])
     username = StringField('사용자 이름', validators=[DataRequired()])
     passwd_answer = StringField('비밀번호 힌트 답변', validators=[DataRequired(), Length(0, 30, message=())])
+    password1 = PasswordField('비밀번호', validators=[DataRequired(), EqualTo('password2', '비밀번호가 일치하지 않습니다')])
+    password2 = PasswordField('비밀번호 확인', validators=[DataRequired()])
 
 
 class PasswordResetConfirmForm(FlaskForm):

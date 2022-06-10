@@ -29,10 +29,10 @@ def create(notice_id):
 def modify(anotice_id):
     anotice = Anotice.query.get_or_404(anotice_id)
     form = AnoticeForm(obj=anotice)
-    if g.user != anotice.user:
-        # flash('수정권한이 없습니다')
-        return '<script>alert("수정권한이 없습니다");location.href="/anotice/detail/' + str(anotice.notice.id) + '"</script>'
-        # return redirect(url_for('notice.detail', notice_id=anotice.notice.id))
+    # 보안
+    # if g.user != anotice.user:
+    #     return '<script>alert("수정권한이 없습니다");location.href="/anotice/detail/' + str(anotice.notice.id) + '"</script>'
+        
     if request.method == "POST":
         form = AnoticeForm()
         if form.validate_on_submit():
@@ -50,12 +50,12 @@ def modify(anotice_id):
 def delete(anotice_id):
     anotice = Anotice.query.get_or_404(anotice_id)
     notice_id = anotice.notice.id
-    if g.user != anotice.user:
-        # flash('삭제권한이 없습니다')
-        return '<script>alert("삭제권한이 없습니다");location.href="/notice/detail/'+str(notice_id)+'"</script>'
-    else:
-        db.session.delete(anotice)
-        db.session.commit()
-        return '<script>alert("삭제되었습니다.");location.href="/notice/detail/'+str(notice_id) + '"</script>'
-    return redirect(url_for('notice.detail', notice_id=notice_id))
+    #보안
+    # if g.user != anotice.user:
+    #     return '<script>alert("삭제권한이 없습니다");location.href="/notice/detail/'+str(notice_id)+'"</script>'
+    # else:
+    db.session.delete(anotice)
+    db.session.commit()
+    return '<script>alert("삭제되었습니다.");location.href="/notice/detail/'+str(notice_id) + '"</script>'
+    # return redirect(url_for('notice.detail', notice_id=notice_id))
 
