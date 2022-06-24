@@ -88,6 +88,8 @@ def create():
     if request.method == 'POST' and form.validate_on_submit():
         if request.files['file']:
             filename = file_upload(request.files['file'])
+            if(filename == "error"):
+                return '<script>alert("허용된 확장자가 아닙니다.");location.href="/community/detail"</script>'
 
         community = Community(subject=form.subject.data, content=form.content.data, create_date=datetime.now(),
                               user=g.user, file=filename, hits=1)
@@ -122,6 +124,8 @@ def modify(community_id):
         if form.validate_on_submit():
             if request.files['file']:
                 filename = file_upload(request.files['file'])
+                if(filename == "error"):
+                    return '<script>alert("허용된 확장자가 아닙니다.");location.href="/community/detail"</script>'
                 community.file = filename
 
             #로그
@@ -180,5 +184,16 @@ def file_download(file_name):
 def file_upload(file):
     print("file_upload")
     filename = secure_filename(file.filename)
-    file.save(UPLOAD_FOLDER + "\\" + filename)
-    return filename
+    extension = filename.split(".");
+    allow_Extension = {"png", "jpg"}
+
+    #허용된 확장자 리스트에 파일의 확장자가 존재할 경우 파일을 저장
+    for i in allow_Extension:
+      if(extension[1] == i):
+            file.save(UPLOAD_FOLDER + "\\" + filename)
+            return filename
+
+    #파일이 저장이 안될경우 error 수신
+    return "error"
+
+    
